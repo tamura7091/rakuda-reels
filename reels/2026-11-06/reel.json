@@ -1,0 +1,48 @@
+{
+  "topic": "How a battery-free Suica card talks to the ticket gate",
+  "why": "Candidates: (1) Suica: no battery inside, yet a tap at the gate settles the fare in under 0.2 s, because the gate's magnetic field powers the card and the card answers by rippling that field. Every Japanese adult taps one daily and has never wondered; it is a known product and the cutaway (coil, field lines, chip waking up) animates beautifully. (2) Shazam's audio fingerprint (spectrogram peaks become a star map): strong CS classic, but less personal for a train viewer. (3) Why a QR code still scans with a logo over it (Reed-Solomon error correction): clever, but the payoff is more abstract. Pick: Suica. It is the 'wait, how?' they hold in their hand on the train right now, it fits the channel's learnings (known product, phenomenon moving from second 0 like the Google Maps and noise-cancelling reels), and it is evergreen.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく。冒頭はいきなり、改札の読み取り部にSuicaがタッチされ、ゲートがパッと開く画から。カードには「電池なし」の表示。次にカードを透かした断面図にして、縁を何周も巻くアンテナのコイルと小さなチップを見せる。改札から見えない磁場が波のように脈打ち、カードが近づくとコイルに電流が光って流れ込み、チップが点灯して目を覚ます。改札→カードは磁場の強さが少し変わる波、カード→改札はチップがスイッチを切り替えて磁場がわずかに揺れる波として、往復の信号を色分けで見せる。互いに確かめ合う鍵のアイコンが毎回新しく作られる。最後は全体が一瞬のタイムラインに収まる。暗いネイビーにSuicaを思わせるグリーン1色のアクセント。",
+  "lines": [
+    "Suicaの中には、電池が入っていません。",
+    "なのにタッチすると、0.2秒以内に支払いまで終わります。",
+    "カードの縁には、アンテナが何周も巻かれています。",
+    "改札の読み取り部は、いつも見えない磁場を出しています。",
+    "その磁場は、1秒間に1356万回も向きを変えています。",
+    "カードが近づくと、アンテナに電流が生まれます。",
+    "ワイヤレス充電と同じ、電磁誘導という現象です。",
+    "このわずかな電気で、カードのチップが目を覚まします。",
+    "改札は、磁場の強さを少しだけ変えて、カードに話しかけます。",
+    "でもカードには、自分で電波を出す力がありません。",
+    "そこでチップは、使う電気の量を細かく切り替えます。",
+    "すると改札側の磁場がわずかに揺れて、それが返事になります。",
+    "そして互いが本物かを確かめ合い、暗号の鍵を毎回つくり直します。",
+    "これが全部、タッチの一瞬で起きています。",
+    "この動画は、",
+    "AI動画編集ツール「Rakuda」で作りました。",
+    "このような動画を作りたい方は、",
+    "プロフィールのリンクをチェックしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Sony: FeliCa Contactless IC Card System (13.56 MHz, 212/424 kbps, activated by the reader's electromagnetic waves, ASK modulation, mutual authentication, key generated every time, transactions within 0.1 s)",
+      "url": "https://www.sony.co.jp/en/Products/felica/about/scheme.html"
+    },
+    {
+      "title": "Impress Watch 鈴木淳也のPay Attention: Suicaの処理は200ミリ秒以内、電磁誘導でカード内アンテナに電流、改札の認識距離最大85mm",
+      "url": "https://www.watch.impress.co.jp/docs/series/suzukij/1316685.html"
+    },
+    {
+      "title": "Electronic Design: NFC/RFID Ripe for Application Expansion (passive tag powered by reader's 13.56 MHz field via its antenna coil; load modulation)",
+      "url": "https://www.electronicdesign.com/technologies/communications/article/21800606/nfc-rfid-ripe-for-application-expansion"
+    },
+    {
+      "title": "JSME: IC card automatic fare collection gate system (Suica gates, communication speed and field shape)",
+      "url": "https://www.jsme.or.jp/archive/eng/awards/awardsn02-5.html"
+    },
+    {
+      "title": "Wireless Power Consortium: How Qi works (magnetic induction between two coils)",
+      "url": "https://www.wirelesspowerconsortium.com/knowledge-base/magnetic-induction/how-qi-works/"
+    }
+  ]
+}
