@@ -19,7 +19,7 @@ You are the last check, as a demanding creative director. Nobody else will look 
 {
   "pass": false,
   "summary": "one or two sentences: the verdict and the one thing that matters most",
-  "revise": [{"section": 3, "request": "concrete change, in Japanese, the way a creator asks Rakuda's chat"}]
+  "revise": [{"section": 3, "request": "concrete change, in Japanese, the way a creator asks Rakuda's chat", "quick": true}]
 }
 ```
 
@@ -27,6 +27,13 @@ You are the last check, as a demanding creative director. Nobody else will look 
 - `revise`: at most 3 sections (indexes in `structure.json` `sections`) whose visual should be redone, each with one
   concrete request (what to show, what to remove, how it should move). Leave it empty when the problem cannot be fixed
   by redoing a visual (then the reel is not posted today).
+- `quick: true` when the visual on screen is right and only needs a tweak (add or remove a label or a stray mark,
+  move or resize something, fix a crop, a color, a timing): Rakuda then edits that component in place, in minutes,
+  and keeps everything else in it. `quick: false` only when the visual itself is wrong or broken (shows the wrong
+  thing, an empty or grey stage, a placeholder): it is planned and built again from scratch, which is slow and can
+  bring new flaws. Prefer quick whenever it can fix the problem.
+- In round 2 and 3, check first that every earlier request was actually fixed; one that was not is asked again, as a
+  quick tweak of what is there now, saying exactly what is still wrong.
 - You may also improve `caption.txt`.
 
 Do not run the engine, commit or post.

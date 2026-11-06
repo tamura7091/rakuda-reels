@@ -96,8 +96,11 @@ jobs:
             n=$(node -e 'const r=require("./'"$dir"'/review.json");console.log((r.revise||[]).length)')
             [ "$n" = 0 ] && break
             for i in $(seq 0 $((n - 1))); do
-              node -e 'const r=require("./'"$dir"'/review.json").revise['"$i"'];require("fs").writeFileSync("'"$proj"'/revise.json",JSON.stringify({section:r.section,request:r.request}))'
+              node -e 'const r=require("./'"$dir"'/review.json").revise['"$i"'];require("fs").writeFileSync("'"$proj"'/revise.json",JSON.stringify({section:r.section,request:r.request,quick:!!r.quick}));console.log("revise",r.section,r.quick?"(quick)":"(rebuild)",r.request)'
+              rm -f "$proj/error.log"
               python3 rakuda/engine/pipeline.py revise "$proj"
+              # revise records a failure in error.log and exits 0: show it (the next review sees the section unchanged)
+              if [ -f "$proj/error.log" ]; then echo "::warning::revise of a section failed"; tail -5 "$proj/error.log"; fi
             done
             python3 rakuda/engine/pipeline.py export "$proj"
             cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
