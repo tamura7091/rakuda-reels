@@ -39,10 +39,8 @@ if (!publish) process.exit(0);
 // 2. a reel container, the mp4 uploaded into it, then published once Instagram has processed it
 const video = path.join(dir, 'reel.mp4');
 const caption = fs.readFileSync(path.join(dir, 'caption.txt'), 'utf8').trim();
-const tl = JSON.parse(fs.readFileSync(path.join(dir, 'timeline.json'), 'utf8'));
 const box = await api('POST', `/${ig.id}/media`, {
   media_type: 'REELS', upload_type: 'resumable', caption, share_to_feed: 'true',
-  thumb_offset: String(Math.round(tl.lines[0].end * 1000)),
 });
 const bytes = fs.readFileSync(video);
 const up = await fetch(box.uri ?? `https://rupload.facebook.com/ig-api-upload/${VERSION}/${box.id}`, {
