@@ -1,0 +1,8 @@
+node_modules/
+reels/*/reel.mp4
+reels/*/voice.mp3
+reels/*/frames/
+reels/*/preview/
+reels/_test/
+claude.log
+.DS_Store
