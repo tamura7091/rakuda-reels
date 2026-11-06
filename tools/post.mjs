@@ -1,6 +1,6 @@
 // Posts a finished reel to the @rakuda.studio Instagram through the Graph API (Facebook Login for Business: the
-// "Rakuda Reels Publisher" system user of the Rakuda business, app "Rakuda Reels"), uploading the mp4 itself
-// (resumable upload), so no public hosting is needed. Then it comments the ending's ask under the reel (the Graph API
+// "Rakuda Reels Publisher" system user of the Rakuda business, app "Rakuda Reels"), hosting the mp4
+// (as a release asset of this public repo, which Instagram fetches by URL; needs gh signed in, GH_TOKEN in CI). Then it comments the ending's ask under the reel (the Graph API
 // cannot pin a comment: pin it in the app if wanted). Rakuda's comment-to-DM bot skips the account's own comments.
 //
 //   node tools/post.mjs reels/<slug>              check the token, the account and every file a post needs, and stop
@@ -58,16 +58,19 @@ const me = await api('GET', `/${ig.id}`, { fields: 'username' });
 console.log(`posting as @${me.username}: ${(size / 1e6).toFixed(1)} MB, caption ${caption.length} chars`);
 if (!publish) process.exit(0);
 
-// 2. a reel container, the mp4 uploaded into it, then published once Instagram has processed it
+// 2. the mp4 as an asset of a release of this (public) repo, so Instagram fetches it from a URL: the resumable upload
+// (rupload) kept answering ProcessingFailedError and left the container processing for 10+ minutes
+const tag = `reel-${path.basename(dir)}`;
+const repo = process.env.GITHUB_REPOSITORY ?? 'tamura7091/rakuda-reels';
+let held = null; // the asset already there (a post retried by hand): reused when it is this exact file
+try { held = JSON.parse(execFileSync('gh', ['release', 'view', tag, '-R', repo, '--json', 'assets'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })).assets.find((a) => a.name === 'reel.mp4'); }
+catch { execFileSync('gh', ['release', 'create', tag, '-R', repo, '--title', tag, '--notes', 'The posted mp4 (Instagram fetches it from here).'], { stdio: 'inherit' }); }
+if (held?.size !== size) execFileSync('gh', ['release', 'upload', tag, video, '--clobber', '-R', repo], { stdio: 'inherit' });
+const url = `https://github.com/${repo}/releases/download/${tag}/reel.mp4`;
+
+// 3. a reel container that Instagram fills from the URL, published once it has processed it
 async function container() {
-  const box = await api('POST', `/${ig.id}/media`, { media_type: 'REELS', upload_type: 'resumable', caption });
-  // rupload sometimes answers "ProcessingFailedError" although the bytes arrived (the container still turns FINISHED),
-  // so an upload error is only logged and the container status decides
-  const up = JSON.parse(execFileSync('curl', ['-s', '-X', 'POST',
-    box.uri ?? `https://rupload.facebook.com/ig-api-upload/${VERSION}/${box.id}`,
-    '-H', `Authorization: OAuth ${token}`, '-H', 'offset: 0', '-H', `file_size: ${size}`,
-    '--data-binary', `@${video}`], { encoding: 'utf8', maxBuffer: 1 << 20 }) || '{}');
-  if (!up.success) console.log(`upload answered ${JSON.stringify(up).slice(0, 300)}; checking the container`);
+  const box = await api('POST', `/${ig.id}/media`, { media_type: 'REELS', video_url: url, caption });
   for (let i = 0; ; i++) {
     const { status_code, status } = await api('GET', `/${box.id}`, { fields: 'status_code,status' });
     if (status_code === 'FINISHED') return box.id;
@@ -86,7 +89,7 @@ const row = { date: new Date().toISOString().slice(0, 10), slug: path.basename(d
 history.push(row);
 fs.writeFileSync(histFile, JSON.stringify(history, null, 1) + '\n');
 
-// 3. the comment under it (the post stands even if this fails; the run then fails and says so)
+// 4. the comment under it (the post stands even if this fails; the run then fails and says so)
 const c = await comment(id);
 row.comment_id = c.id;
 fs.writeFileSync(histFile, JSON.stringify(history, null, 1) + '\n');

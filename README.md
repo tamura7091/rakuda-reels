@@ -17,8 +17,9 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
    small flaw is a `quick` revise (the component edited in place, minutes); only a wrong or broken visual is planned
    and built again. A reel that does not pass is not posted (the run fails and GitHub mails the owner).
-4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) checks every file, uploads the mp4 to Instagram (Graph
-   API, resumable upload; upload and publish are retried once), records it in history.json and comments
+4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) checks every file, puts the mp4 up as a release asset
+   of this repo and has Instagram fetch it by URL (`video_url`; the resumable upload kept stalling), publishes it
+   (retried once), records it in history.json and comments
    「エディターのリンクが欲しい方は「Rakuda」とコメントしてね。DMでお送りします。」 under it (the API cannot pin a
    comment; pin it in the app if wanted). A reel that passed review but was not posted fails the run and opens a
    GitHub issue saying how to post it by hand.

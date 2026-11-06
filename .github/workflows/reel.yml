@@ -115,6 +115,7 @@ jobs:
         id: post
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ github.token }} # the mp4 goes up as a release asset that Instagram fetches
         run: |
           if [ "${{ github.event_name }}" = schedule ]; then
             wait=$(( $(date -u -d 'today 11:00' +%s) - $(date -u +%s) )); [ "$wait" -gt 0 ] && sleep "$wait"
