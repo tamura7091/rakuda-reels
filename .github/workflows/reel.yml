@@ -81,6 +81,8 @@ jobs:
           python3 rakuda/engine/pipeline.py hear "$proj"
           if [ -f "$proj/error.log" ]; then cat "$proj/error.log"; exit 1; fi
           python3 rakuda/engine/pipeline.py export "$proj"
+          # export records a failure in error.log and exits 0: stop here with the renderer's own words
+          if [ -f "$proj/error.log" ]; then tail -3 "$proj/error.log"; tail -8 "$proj/render.log" 2>/dev/null; node tools/timing.mjs "$proj" "after the edit"; exit 1; fi
           cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
           node tools/timing.mjs "$proj" "after the edit"
       - name: C. Review, revise, review again
@@ -102,7 +104,9 @@ jobs:
               # revise records a failure in error.log and exits 0: show it (the next review sees the section unchanged)
               if [ -f "$proj/error.log" ]; then echo "::warning::revise of a section failed"; tail -5 "$proj/error.log"; fi
             done
+            rm -f "$proj/error.log"
             python3 rakuda/engine/pipeline.py export "$proj"
+            if [ -f "$proj/error.log" ]; then tail -3 "$proj/error.log"; tail -8 "$proj/render.log" 2>/dev/null; exit 1; fi
             cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
           done
           node tools/timing.mjs "$proj" "after review"
