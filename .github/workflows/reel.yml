@@ -47,12 +47,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/cache@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+        with:
+          path: ~/debs
+          key: debs-reel-v1
       - name: Set up the engine (as rakuda/Dockerfile)
         env:
           CHANNEL_JSON: ${{ secrets.CHANNEL_JSON }} # the channel's learnings (what worked on our reels), kept out of this public repo
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2 > /dev/null
+          sh tools/apt.sh ffmpeg fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2
           sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
           python3 -m venv ~/venv && ~/venv/bin/pip install -q anthropic==0.125.0 numpy==2.3.4 pdfplumber==0.11.8 pypdfium2==5.9.0
           echo "$HOME/venv/bin" >> "$GITHUB_PATH"

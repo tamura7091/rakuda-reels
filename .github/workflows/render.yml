@@ -39,6 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          sparse-checkout: tools
+      - uses: actions/checkout@v4
+        with:
           repository: tamura7091/rakuda
           ssh-key: ${{ secrets.RAKUDA_DEPLOY_KEY }}
           path: rakuda
@@ -48,10 +51,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/cache@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+        with:
+          path: ~/debs
+          key: debs-render-v1
       - name: Fonts and the renderer (as rakuda/Dockerfile)
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2 > /dev/null
+          sh tools/apt.sh fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2
           sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
           (cd rakuda/engine && npm ci --omit=dev --silent)
       - name: Render this shard's frames
