@@ -12,7 +12,7 @@ You are the last check, as a demanding creative director. Nobody else will look 
    pre-post review in `rakuda/web/lib/viral.ts` `review` (the first 3 seconds decide whether viewers stay: what is
    said and what the picture shows then). Also fail anything broken: text cut off or overlapping, an empty or frozen
    stage, a visual that shows something other than its line, captions out of sync, a wrong fact, ugly composition,
-   the Rakuda ending missing.
+   the Rakuda ending missing (the last lines and the caption must ask viewers to comment 「Rakuda」, spelled exactly so).
 3. Write `REEL_DIR/review.json`:
 
 ```json

@@ -21,12 +21,20 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
 
 The repo is public so Actions minutes are free; nothing private is in it.
 
+## The ending and comment DMs
+
+Every reel ends with 「この動画は全て、AI動画編集ツール「Rakuda」で編集しました。ツールが気になる方は、「Rakuda」とコメントしてください。」
+and the caption says the same plus 「DMでリンクをお送りします。」 ([prompts/script.md](prompts/script.md); the review fails a reel
+without it). The DM itself is sent by the Rakuda server, not this repo: whoever comments Rakuda / ラクダ / らくだ on a
+post from the last 7 days gets one private reply with the link (rakuda `web/lib/comment-dm.ts`, docs/hosting.md ›
+Comment DMs). It uses the same system user token as `IG_TOKEN` here.
+
 ## Secrets (Settings → Secrets and variables → Actions)
 
 | Secret | What | Where it came from |
 |---|---|---|
 | `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code on the Claude plan (1 year) | `claude setup-token` ([tools/connect.sh](tools/connect.sh)) |
-| `IG_TOKEN` | Meta system user "Rakuda Reels Publisher" (Rakuda business), app "Rakuda Reels", never expires | Business settings → System users → トークンを生成 ([tools/connect.sh](tools/connect.sh) `ig`) |
+| `IG_TOKEN` | Meta system user "Rakuda Reels Publisher" (Rakuda business), app "Rakuda Reels", never expires; also Kaminari `RAKUDA_IG_TOKEN` and the Rakuda server's Fly secret `IG_TOKEN` (comment DMs) | Business settings → System users → トークンを生成 ([tools/connect.sh](tools/connect.sh) `ig`) |
 | `ELEVENLABS_API_KEY` | the voice | Kaminari `RAKUDA_ELEVENLABS_API_KEY` |
 | `RAKUDA_DEPLOY_KEY` | read-only deploy key of tamura7091/rakuda | generated for this repo |
 | `CHANNEL_JSON` | the channel's learnings (what worked on our reels), for the engine | rakuda/data/channels/6c5e10a070d9/channel.json |

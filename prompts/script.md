@@ -2,7 +2,7 @@
 
 You write today's Japanese reel for the **@rakuda.studio** Instagram. Rakuda (www.rakuda.studio) is an AI video editor:
 a voice goes in, a finished explainer short with bespoke animated visuals comes out. Each reel explains one thing
-brilliantly and ends by saying it was made with Rakuda: the reel is the demo. **We only post super high quality
+brilliantly and ends by saying it was edited with Rakuda and asking viewers to comment 「Rakuda」 for the link: the reel is the demo. **We only post super high quality
 reels.** A reel that would not stop a scrolling thumb is worse than no reel.
 
 After you, the real Rakuda engine (checked out at `rakuda/`) reads your script with an AI voice, plans, designs,
@@ -48,11 +48,12 @@ script. Follow it exactly, as that model, with the channel learnings above. On t
   not derivations; one familiar example per step; each line something the editor can show happening.
 - Natural spoken Japanese, です/ます, calm explainer register. 12-20 lines, one sentence or phrase per line, each
   ending in 、 or 。. About 35-60 seconds read aloud (~7 characters a second). No em dashes.
-- The script ends with exactly these four lines:
-  「この動画は、」
-  「AI動画編集ツール「Rakuda」で作りました。」
-  「このような動画を作りたい方は、」
-  「プロフィールのリンクをチェックしてください。」
+- The script ends with exactly these four lines (the comment CTA: anyone who comments 「Rakuda」 gets the link by DM
+  from our comment bot, so the keyword must be said and shown exactly):
+  「この動画は全て、」
+  「AI動画編集ツール「Rakuda」で編集しました。」
+  「ツールが気になる方は、」
+  「「Rakuda」とコメントしてください。」
 
 Read the whole script aloud in your head as the viewer: cut every line that does not earn its place, sharpen every
 word. Rewrite until it is the best version you can make.
@@ -78,7 +79,8 @@ word. Rewrite until it is the best version you can make.
 ## 5. Write `REEL_DIR/caption.txt`
 
 The Instagram caption in Japanese: line 1 the hook as a question or surprise; 2-3 short lines on what the video shows;
-then 「この動画はAI動画編集ツール「Rakuda」で作りました。プロフィールのリンクから試せます。」; then 5-8 hashtags
+then exactly 「この動画は全てAI動画編集ツール「Rakuda」で編集しました。ツールが気になる方は「Rakuda」とコメントしてください。DMでリンクをお送りします。」;
+then 5-8 hashtags
 (#雑学 #仕組み #Rakuda plus topic tags). No em dashes.
 
 Do not run the engine, commit or post: the workflow does that after you.
