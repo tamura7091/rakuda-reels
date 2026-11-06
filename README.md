@@ -13,6 +13,9 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    voice, exactly as 「AIに全部おまかせ」 does ([tools/project.mjs](tools/project.mjs)), then `pipeline.py hear` (plan,
    design, every section's visual built and reviewed by its director, captions, sound) and `export`. The engine's
    local "Claude Code" mode sends every model call to the claude CLI.
+   Every export's frames are rendered on 12 runners at once ([render.yml](.github/workflows/render.yml) started by
+   [tools/render.sh](tools/render.sh)); a runner has no GPU and alone renders heavy scenes at about 1.5 frames/s,
+   which made one export take 30 to 60 minutes. `export` then only encodes.
 3. **Review**: Claude Code reviews the export as a creative director against Rakuda's `QUALITY` bar and pre-post review
    ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
    small flaw is a `quick` revise (the component edited in place, minutes); only a wrong or broken visual is planned
