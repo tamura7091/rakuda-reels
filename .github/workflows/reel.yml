@@ -67,6 +67,7 @@ jobs:
         id: script
         run: |
           dir="reels/$(TZ=Asia/Tokyo date +%F)"
+          [ -e "$dir/reel.json" ] && dir="$dir-$(TZ=Asia/Tokyo date +%H%M)" # a second run that day keeps its own folder
           mkdir -p "$dir" && echo "dir=$dir" >> "$GITHUB_OUTPUT"
           { echo "Today is $(TZ=Asia/Tokyo date +%F) (JST). REEL_DIR is $dir."; cat prompts/script.md; } > /tmp/prompt.md
           claude -p "$(cat /tmp/prompt.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > "$dir/script.log"
