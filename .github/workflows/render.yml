@@ -1,0 +1,67 @@
+# One export's frames, rendered on many runners at once (started by tools/render.sh from the daily reel run). A runner
+# has no GPU, so Rakuda's heavy scenes (3D, big canvases) render at about 1.5 frames/s on one; split 12 ways, an
+# 80 s reel takes a few minutes instead of half an hour or more. The timeline comes in, and each shard's frames go
+# out, as assets of a temporary prerelease (tag inputs.tag), which render.sh deletes when it has them.
+name: Render shards
+run-name: render ${{ inputs.tag }}
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: the prerelease holding input.tar.gz
+        required: true
+      count:
+        description: how many shards
+        required: true
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.list.outputs.shards }}
+    steps:
+      - id: list
+        run: echo "shards=$(node -e 'console.log(JSON.stringify([...Array(+process.argv[1]).keys()]))' ${{ inputs.count }})" >> "$GITHUB_OUTPUT"
+  shard:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: true
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: tamura7091/rakuda
+          ssh-key: ${{ secrets.RAKUDA_DEPLOY_KEY }}
+          path: rakuda
+          sparse-checkout: |
+            engine
+            docker
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fonts and the renderer (as rakuda/Dockerfile)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core > /dev/null
+          sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
+          (cd rakuda/engine && npm ci --omit=dev --silent)
+      - name: Render this shard's frames
+        run: |
+          gh release download "${{ inputs.tag }}" -R "$GITHUB_REPOSITORY" -p input.tar.gz -D /tmp/in
+          mkdir -p /tmp/p /tmp/frames && tar -xzf /tmp/in/input.tar.gz -C /tmp/p
+          node -e 'const f="/tmp/p/timeline-export.json",fs=require("fs"),t=JSON.parse(fs.readFileSync(f));t.mediaBase="file:///tmp/p/media/";fs.writeFileSync(f,JSON.stringify(t))'
+          total=$(node -e 'const t=require("/tmp/p/timeline-export.json");console.log(Math.ceil(t.duration*t.fps))')
+          n=${{ inputs.count }}; s=${{ matrix.shard }}; per=$(( (total + n - 1) / n )); from=$(( s * per )); to=$(( from + per < total ? from + per : total ))
+          echo "frames $from to $to of $total"
+          s0=$(date +%s)
+          node rakuda/engine/render.mjs /tmp/p/timeline-export.json /tmp/frames 3 "$from" "$to" | grep -v '^@progress' || true
+          echo "rendered in $(( $(date +%s) - s0 )) s"
+          [ "$(ls /tmp/frames | grep -c png)" = $(( to - from )) ] || { echo "::error::shard $s is missing frames"; exit 1; }
+          tar -cf "frames-$s.tar" -C /tmp/frames .
+          gh release upload "${{ inputs.tag }}" "frames-$s.tar" -R "$GITHUB_REPOSITORY"

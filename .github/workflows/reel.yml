@@ -21,6 +21,7 @@ on:
         default: false
 permissions:
   contents: write
+  actions: write # tools/render.sh starts the sharded render (render.yml)
   issues: write # the alert when a reel that passed review is not posted
 concurrency: reel
 env:
@@ -74,12 +75,15 @@ jobs:
           node -e 'const r=require("./'"$dir"'/reel.json");if(!r.lines?.length)process.exit(1);console.log(r.topic, "|", r.why);console.log(r.lines.join("\n"))'
       - name: B. Rakuda edits and exports it
         id: edit
+        env:
+          GH_TOKEN: ${{ github.token }} # tools/render.sh: the sharded render
         run: |
           dir="${{ steps.script.outputs.dir }}"
           proj=$(node tools/project.mjs "$dir")
           echo "proj=$proj" >> "$GITHUB_OUTPUT"
           python3 rakuda/engine/pipeline.py hear "$proj"
           if [ -f "$proj/error.log" ]; then cat "$proj/error.log"; exit 1; fi
+          sh tools/render.sh "$proj"
           python3 rakuda/engine/pipeline.py export "$proj"
           # export records a failure in error.log and exits 0: stop here with the renderer's own words
           if [ -f "$proj/error.log" ]; then tail -3 "$proj/error.log"; tail -8 "$proj/render.log" 2>/dev/null; node tools/timing.mjs "$proj" "after the edit"; exit 1; fi
@@ -87,11 +91,13 @@ jobs:
           node tools/timing.mjs "$proj" "after the edit"
       - name: C. Review, revise, review again
         id: review
+        env:
+          GH_TOKEN: ${{ github.token }} # tools/render.sh: the sharded render
         run: |
           dir="${{ steps.script.outputs.dir }}"; proj="${{ steps.edit.outputs.proj }}"
           for round in 1 2 3; do
             { echo "REEL_DIR is $dir. PROJECT_DIR is $proj. Review round $round of 3."; cat prompts/review.md; } > /tmp/review.md
-            claude -p "$(cat /tmp/review.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > "$dir/review-$round.log"
+            env -u GH_TOKEN claude -p "$(cat /tmp/review.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > "$dir/review-$round.log"
             node -e 'const r=require("./'"$dir"'/review.json");console.log(r.pass?"PASS":"FAIL", r.summary)'
             node -e 'process.exit(require("./'"$dir"'/review.json").pass?0:1)' && { node tools/timing.mjs "$proj" "after review"; exit 0; }
             [ "$round" = 3 ] && break
@@ -105,6 +111,7 @@ jobs:
               if [ -f "$proj/error.log" ]; then echo "::warning::revise of a section failed"; tail -5 "$proj/error.log"; fi
             done
             rm -f "$proj/error.log"
+            sh tools/render.sh "$proj"
             python3 rakuda/engine/pipeline.py export "$proj"
             if [ -f "$proj/error.log" ]; then tail -3 "$proj/error.log"; tail -8 "$proj/render.log" 2>/dev/null; exit 1; fi
             cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
