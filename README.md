@@ -15,9 +15,16 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    local "Claude Code" mode sends every model call to the claude CLI.
 3. **Review**: Claude Code reviews the export as a creative director against Rakuda's `QUALITY` bar and pre-post review
    ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
-   reel that does not pass is not posted (the run fails and GitHub mails the owner).
-4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) uploads the mp4 to Instagram (Graph API, resumable upload)
-   and records it in history.json.
+   small flaw is a `quick` revise (the component edited in place, minutes); only a wrong or broken visual is planned
+   and built again. A reel that does not pass is not posted (the run fails and GitHub mails the owner).
+4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) checks every file, uploads the mp4 to Instagram (Graph
+   API, resumable upload; upload and publish are retried once), records it in history.json and comments
+   「エディターのリンクが欲しい方は「Rakuda」とコメントしてね。DMでお送りします。」 under it (the API cannot pin a
+   comment; pin it in the app if wanted). A reel that passed review but was not posted fails the run and opens a
+   GitHub issue saying how to post it by hand.
+
+Each run's summary has a timing table (model calls per engine step, export frames and encode), from the engine's own
+`events.jsonl` and `trace/calls.jsonl`, which are kept in the run's artifact ([tools/timing.mjs](tools/timing.mjs)).
 
 The repo is public so Actions minutes are free; nothing private is in it.
 
@@ -27,7 +34,8 @@ Every reel ends with 「この動画は全て、AI動画編集ツール「Rakuda
 and the caption says the same plus 「DMでリンクをお送りします。」 ([prompts/script.md](prompts/script.md); the review fails a reel
 without it). The DM itself is sent by the Rakuda server, not this repo: whoever comments Rakuda / ラクダ / らくだ on a
 post from the last 7 days gets one private reply with the link (rakuda `web/lib/comment-dm.ts`, docs/hosting.md ›
-Comment DMs). It uses the same system user token as `IG_TOKEN` here.
+Comment DMs). It uses the same system user token as `IG_TOKEN` here, and skips the account's own comments (the one
+post.mjs leaves under each reel). `node tools/post.mjs --comment <media_id>` adds that comment to a reel posted by hand.
 
 ## Secrets (Settings → Secrets and variables → Actions)
 
