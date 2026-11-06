@@ -1,11 +1,18 @@
-# The daily Rakuda reel: Claude Code (on Naoki's Claude plan, CLAUDE_CODE_OAUTH_TOKEN) picks a topic, checks the facts,
-# writes the script, has ElevenLabs read it, draws the visuals, checks the stills and renders the mp4 (PROMPT.md); then
-# tools/post.mjs publishes it to @rakuda.studio. Runs at 19:30 JST so the reel is up around 20:00.
-# Run by hand (Actions → Daily reel → Run workflow) to make one without posting, or tick "publish".
+# The daily Rakuda reel, made by the real Rakuda engine on Naoki's Claude plan (no Rakuda credits, no API keys for the
+# models): the engine's local "Claude Code" mode sends every model call to the claude CLI, signed in with
+# CLAUDE_CODE_OAUTH_TOKEN.
+#   A. Claude Code researches what is interesting and going viral, picks the topic, checks the facts and writes the
+#      script by Rakuda's own script rules (prompts/script.md).
+#   B. The Rakuda engine (tamura7091/rakuda, private, read with a deploy key) reads it with an AI voice and edits it:
+#      plan, design, every section's visual built and reviewed by its director, captions, sound; then the mp4.
+#   C. Claude Code reviews the export as a creative director (prompts/review.md); weak sections are redone with the
+#      engine's `revise` (up to two rounds). Only a passing reel is posted (tools/post.mjs).
+# Starts 16:30 JST (a run takes one to three hours); a scheduled post waits for 20:00 JST. Run by hand: Actions → Daily reel → Run workflow (tick "publish"
+# to post; otherwise the reel is only made and kept as the run's artifact).
 name: Daily reel
 on:
   schedule:
-    - cron: '30 10 * * *'
+    - cron: '30 7 * * *'
   workflow_dispatch:
     inputs:
       publish:
@@ -15,56 +22,104 @@ on:
 permissions:
   contents: write
 concurrency: reel
+env:
+  REELS_CLAUDE_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+  ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+  # the engine's spending caps count what the API would have charged; the plan pays nothing here
+  RAKUDA_RUN_BUDGET_USD: '1000'
+  RAKUDA_MONTH_BUDGET_USD: '100000'
 jobs:
   reel:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: tamura7091/rakuda
+          ssh-key: ${{ secrets.RAKUDA_DEPLOY_KEY }}
+          path: rakuda
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - name: Install ffmpeg, Japanese fonts, Claude Code
+      - name: Set up the engine (as rakuda/Dockerfile)
+        env:
+          CHANNEL_JSON: ${{ secrets.CHANNEL_JSON }} # the channel's learnings (what worked on our reels), kept out of this public repo
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk > /dev/null
-          npm ci
-          npm install -g @anthropic-ai/claude-code
-      - name: Make the reel (Claude Code)
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core > /dev/null
+          sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
+          python3 -m venv ~/venv && ~/venv/bin/pip install -q anthropic==0.125.0 numpy==2.3.4 pdfplumber==0.11.8 pypdfium2==5.9.0
+          echo "$HOME/venv/bin" >> "$GITHUB_PATH"
+          (cd rakuda/engine && npm ci --omit=dev --silent)
+          npm install -g --silent @anthropic-ai/claude-code
+          # the engine drops CLAUDE_* variables before it calls the CLI (so a developer's own sign-in is used): this
+          # wrapper, first on PATH, hands the plan's token back to every claude it starts
+          mkdir -p ~/bin
+          printf '#!/bin/sh\nCLAUDE_CODE_OAUTH_TOKEN="$REELS_CLAUDE_TOKEN" exec "%s" "$@"\n' "$(npm prefix -g)/bin/claude" > ~/bin/claude
+          chmod +x ~/bin/claude && echo "$HOME/bin" >> "$GITHUB_PATH"
+          mkdir -p rakuda/data/channels/6c5e10a070d9
+          printf '%s' "$CHANNEL_JSON" > rakuda/data/channels/6c5e10a070d9/channel.json
+      - name: A. Topic and script (Claude Code)
+        id: script
+        run: |
+          dir="reels/$(TZ=Asia/Tokyo date +%F)"
+          mkdir -p "$dir" && echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          { echo "Today is $(TZ=Asia/Tokyo date +%F) (JST). REEL_DIR is $dir."; cat prompts/script.md; } > /tmp/prompt.md
+          claude -p "$(cat /tmp/prompt.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > "$dir/script.log"
+          node -e 'const r=require("./'"$dir"'/reel.json");if(!r.lines?.length)process.exit(1);console.log(r.topic, "|", r.why);console.log(r.lines.join("\n"))'
+      - name: B. Rakuda edits and exports it
+        id: edit
+        run: |
+          dir="${{ steps.script.outputs.dir }}"
+          proj=$(node tools/project.mjs "$dir")
+          echo "proj=$proj" >> "$GITHUB_OUTPUT"
+          python3 rakuda/engine/pipeline.py hear "$proj"
+          if [ -f "$proj/error.log" ]; then cat "$proj/error.log"; exit 1; fi
+          python3 rakuda/engine/pipeline.py export "$proj"
+          cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
+      - name: C. Review, revise, review again
+        run: |
+          dir="${{ steps.script.outputs.dir }}"; proj="${{ steps.edit.outputs.proj }}"
+          for round in 1 2 3; do
+            { echo "REEL_DIR is $dir. PROJECT_DIR is $proj. Review round $round of 3."; cat prompts/review.md; } > /tmp/review.md
+            claude -p "$(cat /tmp/review.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > "$dir/review-$round.log"
+            node -e 'const r=require("./'"$dir"'/review.json");console.log(r.pass?"PASS":"FAIL", r.summary)'
+            node -e 'process.exit(require("./'"$dir"'/review.json").pass?0:1)' && exit 0
+            [ "$round" = 3 ] && break
+            n=$(node -e 'const r=require("./'"$dir"'/review.json");console.log((r.revise||[]).length)')
+            [ "$n" = 0 ] && break
+            for i in $(seq 0 $((n - 1))); do
+              node -e 'const r=require("./'"$dir"'/review.json").revise['"$i"'];require("fs").writeFileSync("'"$proj"'/revise.json",JSON.stringify({section:r.section,request:r.request}))'
+              python3 rakuda/engine/pipeline.py revise "$proj"
+            done
+            python3 rakuda/engine/pipeline.py export "$proj"
+            cp "$(ls -t "$proj"/exports/*.mp4 | head -n 1)" "$dir/reel.mp4"
+          done
+          echo "Not good enough to post today."; exit 1
+      - name: Post to Instagram
         env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
         run: |
-          echo "Today is $(TZ=Asia/Tokyo date +%F) (JST)." | cat - PROMPT.md > /tmp/prompt.md
-          claude -p "$(cat /tmp/prompt.md)" --model opus --dangerously-skip-permissions --output-format stream-json --verbose > claude.log || true
-          tail -n 1 claude.log | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).result)}catch{console.log(s)}})'
-      - name: Find the finished reel
-        id: reel
-        run: |
-          dir=$(ls -d reels/$(TZ=Asia/Tokyo date +%F)-*/ 2>/dev/null | while read d; do [ -f "$d/READY" ] && [ -f "$d/reel.mp4" ] && echo "${d%/}"; done | tail -n 1)
-          if [ -z "$dir" ]; then echo "No finished reel today (no READY + reel.mp4). See the log above."; exit 1; fi
-          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = schedule ]; then
+            wait=$(( $(date -u -d 'today 11:00' +%s) - $(date -u +%s) )); [ "$wait" -gt 0 ] && sleep "$wait"
+          fi
+          node tools/post.mjs ${{ steps.script.outputs.dir }} ${{ (github.event_name == 'schedule' || inputs.publish) && '--publish' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reel
           path: |
-            reels/*/reel.mp4
-            reels/*/preview.jpg
-            claude.log
+            reels/
+            ${{ steps.edit.outputs.proj }}/*.json
+            ${{ steps.edit.outputs.proj }}/error.log
           if-no-files-found: ignore
-      - name: Post to Instagram
-        env:
-          IG_TOKEN: ${{ secrets.IG_TOKEN }}
-          TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-        run: node tools/post.mjs ${{ steps.reel.outputs.dir }} ${{ (github.event_name == 'schedule' || inputs.publish) && '--publish' || '' }}
-      - name: Keep the script, visuals and token state
+      - name: Keep the script, review and history
         if: always()
         run: |
           git config user.name "rakuda-reels"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A reels history.json state 2>/dev/null || true
+          git add reels/*/reel.json reels/*/caption.txt reels/*/review.json reels/*/project history.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
-          git commit -m "reel: ${{ steps.reel.outputs.dir || 'unfinished run' }}"
+          git commit -qm "reel ${{ steps.script.outputs.dir }}"
           git pull --rebase -q && git push -q

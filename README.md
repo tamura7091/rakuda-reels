@@ -1,44 +1,39 @@
 # rakuda-reels
 
-A daily Japanese explainer reel for the **@rakuda.studio** Instagram, made and posted with nobody's computer on.
+A daily Japanese explainer reel for the **@rakuda.studio** Instagram, made by the real Rakuda engine and posted with
+nobody's computer on.
 
-Every day at 19:30 JST a GitHub Action ([.github/workflows/reel.yml](.github/workflows/reel.yml)) starts Claude Code
-on Naoki's Claude plan. Claude follows [PROMPT.md](PROMPT.md): picks a topic not in [history.json](history.json),
-checks the facts on English primary sources, writes the script, has ElevenLabs read it
-([tools/voice.mjs](tools/voice.mjs)), draws the animated diagram (`visual.js`), checks the stills and renders the mp4
-([tools/render.mjs](tools/render.mjs)). The workflow then posts it ([tools/post.mjs](tools/post.mjs)) and commits the
-script, visuals and caption under `reels/<date>-<slug>/`.
+Every day at 16:30 JST a GitHub Action ([.github/workflows/reel.yml](.github/workflows/reel.yml)) runs on Naoki's
+Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no model API keys:
 
-The repo is public so Actions minutes are free. No secret is in it: the Instagram token is kept encrypted in
-`state/ig-token.enc` (key in the `TOKEN_KEY` secret).
+1. **Topic and script**: Claude Code researches what is interesting and going viral in explainer shorts, picks a topic
+   not in [history.json](history.json), checks the facts on primary sources and writes the script by Rakuda's own
+   script rules ([prompts/script.md](prompts/script.md)).
+2. **Edit**: the Rakuda engine (private repo, checked out read-only with a deploy key) reads it with an ElevenLabs
+   voice, exactly as 「AIに全部おまかせ」 does ([tools/project.mjs](tools/project.mjs)), then `pipeline.py hear` (plan,
+   design, every section's visual built and reviewed by its director, captions, sound) and `export`. The engine's
+   local "Claude Code" mode sends every model call to the claude CLI.
+3. **Review**: Claude Code reviews the export as a creative director against Rakuda's `QUALITY` bar and pre-post review
+   ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
+   reel that does not pass is not posted (the run fails and GitHub mails the owner).
+4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) uploads the mp4 to Instagram (Graph API, resumable upload)
+   and records it in history.json.
+
+The repo is public so Actions minutes are free; nothing private is in it.
 
 ## Secrets (Settings → Secrets and variables → Actions)
 
 | Secret | What | Where it came from |
 |---|---|---|
-| `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code on the Claude plan (1 year) | `claude setup-token` |
-| `ELEVENLABS_API_KEY` | the voice (`eleven_v4`, Rakuda's voices) | Kaminari `RAKUDA_ELEVENLABS_API_KEY` |
-| `IG_TOKEN` | Instagram token for @rakuda.studio with `instagram_business_content_publish` (seed only; refreshed every run) | Meta app "Rakuda Reels" → Instagram API setup → Generate token |
-| `TOKEN_KEY` | encrypts the refreshed Instagram token in `state/` | random |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code on the Claude plan (1 year) | `claude setup-token` ([tools/connect.sh](tools/connect.sh)) |
+| `IG_TOKEN` | Meta system user "Rakuda Reels Publisher" (Rakuda business), app "Rakuda Reels", never expires | Business settings → System users → トークンを生成 ([tools/connect.sh](tools/connect.sh) `ig`) |
+| `ELEVENLABS_API_KEY` | the voice | Kaminari `RAKUDA_ELEVENLABS_API_KEY` |
+| `RAKUDA_DEPLOY_KEY` | read-only deploy key of tamura7091/rakuda | generated for this repo |
+| `CHANNEL_JSON` | the channel's learnings (what worked on our reels), for the engine | rakuda/data/channels/6c5e10a070d9/channel.json |
 
 ## Run by hand
 
-Actions → **Daily reel** → Run workflow. Leave "publish" off to make a reel without posting (the mp4 and stills are in
+Actions → **Daily reel** → Run workflow. Leave "publish" off to make and review a reel without posting (the mp4 is in
 the run's artifacts); tick it to post.
 
-Locally (needs Google Chrome and ffmpeg):
-
-```bash
-npm ci
-mkdir -p reels/_test && cp examples/* reels/_test/
-ELEVENLABS_API_KEY=… node tools/voice.mjs reels/_test
-node tools/render.mjs reels/_test --preview   # preview.jpg
-node tools/render.mjs reels/_test             # reel.mp4
-```
-
-## Layout of a frame
-
-[lib/template.html](lib/template.html): title pill at the top, the reel's own visual in the 1080×1000 stage, the
-caption box lighting up character by character from the voice's own timing, the `編集ソフト | www.rakuda.studio` credit,
-and the Rakuda end card from 「この動画は、」 on. [lib/kit.js](lib/kit.js) has the timing helpers;
-[examples/](examples/) is a full example (Googleマップの仕組み).
+Not in CI: Blender hero shots (they need a GPU; Rakuda's own server runs without them too).
