@@ -25,6 +25,9 @@ permissions:
   issues: write # the alert when a reel that passed review is not posted
 concurrency: reel
 env:
+  # WebGL through Mesa's llvmpipe (installed below), 3x faster than Chrome's SwiftShader on a runner without a GPU
+  RAKUDA_CHROME_ARGS: --use-angle=gl-egl --ignore-gpu-blocklist
+  RENDER_SHARDS: '16'
   REELS_CLAUDE_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
   ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
   # the engine's spending caps count what the API would have charged; the plan pays nothing here
@@ -49,7 +52,7 @@ jobs:
           CHANNEL_JSON: ${{ secrets.CHANNEL_JSON }} # the channel's learnings (what worked on our reels), kept out of this public repo
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core > /dev/null
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2 > /dev/null
           sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
           python3 -m venv ~/venv && ~/venv/bin/pip install -q anthropic==0.125.0 numpy==2.3.4 pdfplumber==0.11.8 pypdfium2==5.9.0
           echo "$HOME/venv/bin" >> "$GITHUB_PATH"

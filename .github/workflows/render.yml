@@ -15,6 +15,9 @@ on:
         required: true
 permissions:
   contents: write
+env:
+  # WebGL through Mesa's llvmpipe (installed below), 3x faster than Chrome's SwiftShader on a runner without a GPU
+  RAKUDA_CHROME_ARGS: --use-angle=gl-egl --ignore-gpu-blocklist
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -48,7 +51,7 @@ jobs:
       - name: Fonts and the renderer (as rakuda/Dockerfile)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core > /dev/null
+          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2 > /dev/null
           sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
           (cd rakuda/engine && npm ci --omit=dev --silent)
       - name: Render this shard's frames
@@ -60,7 +63,7 @@ jobs:
           n=${{ inputs.count }}; s=${{ matrix.shard }}; per=$(( (total + n - 1) / n )); from=$(( s * per )); to=$(( from + per < total ? from + per : total ))
           echo "frames $from to $to of $total"
           s0=$(date +%s)
-          node rakuda/engine/render.mjs /tmp/p/timeline-export.json /tmp/frames 3 "$from" "$to" | grep -v '^@progress' || true
+          node rakuda/engine/render.mjs /tmp/p/timeline-export.json /tmp/frames 2 "$from" "$to" | grep -v '^@progress' || true
           echo "rendered in $(( $(date +%s) - s0 )) s"
           [ "$(ls /tmp/frames | grep -c png)" = $(( to - from )) ] || { echo "::error::shard $s is missing frames"; exit 1; }
           tar -cf "frames-$s.tar" -C /tmp/frames .

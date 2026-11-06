@@ -4,8 +4,8 @@
 # renders Rakuda's heavy scenes at about 1.5 frames/s, which made one export take 30 to 60 minutes.
 # If the shards fail, it leaves no frames and says so: the export then renders them itself, slowly.
 #
-#   sh tools/render.sh <project dir>        (needs GH_TOKEN with actions and contents write; RENDER_SHARDS, default 12)
-proj=$1; n=${RENDER_SHARDS:-12}
+#   sh tools/render.sh <project dir>        (needs GH_TOKEN with actions and contents write; RENDER_SHARDS, default 16)
+proj=$1; n=${RENDER_SHARDS:-16}
 tag="render-${GITHUB_RUN_ID:-local}-$(date +%s)"
 work=$(mktemp -d)
 start=$(date +%s)
