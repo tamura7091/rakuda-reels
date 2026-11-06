@@ -56,8 +56,10 @@ jobs:
           # the engine drops CLAUDE_* variables before it calls the CLI (so a developer's own sign-in is used): this
           # wrapper, first on PATH, hands the plan's token back to every claude it starts
           mkdir -p ~/bin
-          printf '#!/bin/sh\nCLAUDE_CODE_OAUTH_TOKEN="$REELS_CLAUDE_TOKEN" exec "%s" "$@"\n' "$(npm prefix -g)/bin/claude" > ~/bin/claude
+          printf '#!/bin/sh\nCLAUDE_CODE_OAUTH_TOKEN="$(printf %%s "$REELS_CLAUDE_TOKEN" | tr -d "[:space:]")" exec "%s" "$@"\n' "$(npm prefix -g)/bin/claude" > ~/bin/claude
           chmod +x ~/bin/claude && echo "$HOME/bin" >> "$GITHUB_PATH"
+          # fail here, in a second, when the plan's token is not accepted
+          ~/bin/claude -p "Reply with OK" --model haiku --output-format json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);if(j.is_error){console.error("Claude sign-in failed: "+j.result);process.exit(1)}console.log("Claude sign-in ok")})'
           mkdir -p rakuda/data/channels/6c5e10a070d9
           printf '%s' "$CHANNEL_JSON" > rakuda/data/channels/6c5e10a070d9/channel.json
       - name: A. Topic and script (Claude Code)
