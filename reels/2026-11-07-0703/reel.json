@@ -1,0 +1,30 @@
+{
+  "topic": "How an optical mouse knows it moved (a tiny camera comparing photos of your desk)",
+  "why": "Candidates: (1) The optical mouse: under the mouse on every office desk, a tiny camera photographs the desk about 1500 times a second, and the chip works out the movement by sliding each photo over the last one until the patterns line up. It is a known product everyone touches daily, the answer is a surprising CS/image-processing classic (Agilent's 1999 navigation patent), and every step is pure motion on screen: flashing frames, a shadowed micro-landscape, two grids sliding until they click. It even pays off a daily annoyance (why it fails on glass). (2) Face ID's dot projector (30,000 invisible dots): visual, but Apple documents little of the matching, so the answer is thin. (3) How a touchscreen finds your finger (a capacitive grid): solid, but a smaller 'wait, how?'. QR error correction was passed over twice already and Shazam was done today. Pick: the mouse. It follows the channel learnings (a known product, the phenomenon moving from second 0, a CS-classic visualization like the sort reel at 105K) and it is evergreen.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく。冒頭はいきなり、机の上のマウスが裏返り、裏の穴の赤い光が点滅するたびに、小さな正方形の写真がパシャパシャと高速で積み重なり、「1500枚/秒」のカウンターが回る画から。2行目で写真を拡大すると、写っているのはただの机の灰色。次にマウスの断面図で、赤い光が机をほぼ真横から照らし、奥の小さなカメラ（18×18のマス目のチップ）に映る様子。机の表面をぐっと拡大して、夕日を浴びた山と谷の地形のように影が伸びる。マウスが少し動くと、次の写真の影の模様がずれる。前の写真と今の写真の2枚の半透明のマス目を重ね、上下左右と斜めに1マスずつずらしては比べ、模様がぴたりと重なった瞬間に光り、そのずれが矢印になって画面のカーソルが同じだけ動く。最後はガラスの上では影の模様が消え、カーソルが止まる。暗いネイビーに、マウスの光を思わせる赤1色のアクセント。",
+  "lines": [
+    "普通のマウスの裏では、1秒に1500枚、写真が撮られています。",
+    "でも写っているのは、ただの机です。",
+    "裏の穴の奥には、とても小さなカメラがあります。",
+    "画素は縦と横に18個ずつ、たった324個です。",
+    "赤い光は、机をほぼ真横から照らしています。",
+    "すると紙や木の細かなでこぼこに、影ができます。",
+    "拡大すると机の表面は、夕日に照らされた山と谷のようです。",
+    "マウスが動くと、次の写真では、この影の模様が少しずれます。",
+    "チップは、前の写真と今の写真を重ねて比べます。",
+    "上下左右と斜めに1マスずつずらして、模様がいちばん重なる位置を探します。",
+    "そのずれが、マウスの動いた向きと距離です。",
+    "これを1秒に1500回くり返すので、カーソルがなめらかに動きます。",
+    "ガラスの上で動きにくいのは、影になる模様がないからです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {"title": "Agilent/Avago ADNS-2610 Optical Mouse Sensor datasheet: sequential surface images (frames), direction and magnitude of movement, 324 pixels per frame (18x18), 1500 fps frame rate, 400 cpi, up to 12 ips, 639 nm red LED illumination", "url": "https://datasheet.sic-components.com/ADNS-2610.pdf"},
+    {"title": "US Patent 6,433,780 (Gordon, Knee, Badyal, Hartlove; Agilent): surface lit from the side at a low angle (about 5 to 20 degrees) to bring out highlights and shadows of micro texture such as paper fibers and wood; reference and sample frames compared over eight one-pixel shifts plus a null shift, the best correlation gives the motion; smooth glass gives no pattern", "url": "https://patents.google.com/patent/US6433780B1/en"},
+    {"title": "Optical mouse (overview: grazing-angle LED light makes surface texture cast shadows like hilly terrain at sunset; digital image correlation)", "url": "https://en.wikipedia.org/wiki/Optical_mouse"}
+  ]
+}
