@@ -1,0 +1,30 @@
+{
+  "topic": "How Shazam recognises a song from a few noisy seconds (audio fingerprinting)",
+  "why": "Candidates: (1) Shazam: you hold your phone up in a noisy shop and it names the song in seconds. Everyone has done it, nobody knows how, and the answer animates well: sound becomes a spectrogram, the spectrogram becomes a star map of peaks, stars get joined into fingerprints, and the right song shows up as matches falling into one straight line. It is a known product plus a CS classic (Wang 2003), the two kinds of topic that have done best for us (Google Maps 151K, sort 105K), and it is evergreen. (2) Why a QR code still scans with a logo over it (Reed-Solomon error correction): clever, but the payoff is more abstract and harder to show moving. (3) How a touchscreen finds your finger (a capacitive grid): visual, but a smaller 'wait, how?'. Pick: Shazam. The first second can show the phenomenon itself (music on the phone becoming a glowing map), and the twist that it does not 'listen' but matches star patterns is the kind of surprise people share.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく。冒頭はいきなり、ざわつくカフェの中でスマホを掲げ、画面の波形が数秒で曲名カードに変わる画から。次に録った音が、横が時間・縦が音の高さのスペクトログラム（光る帯の地図）に広がる。周りより強い点だけが光って残り、他が暗く消えて、夜空の星図のような点の並びになる。雑音の粒をばらまいても強い星は残る様子を見せる。ひとつの星から少し先の星へ線が伸び、2つの高さと間の時間が小さな数字のタグにまとまる＝指紋のかけら。サーバー側は無数のタグが索引のように整列。照合すると多くの曲に点がばらばらに当たるが、正解の曲だけは点が斜めの一直線にぴたりと並び、その曲が浮かび上がる。最後に「1000億回」のカウンターが回る。暗いネイビーに、Shazamを思わせるブルー1色のアクセント。",
+  "lines": [
+    "騒がしいお店で流れる曲に、スマホを向けて数秒。",
+    "Shazamは、それだけで曲名を当てます。",
+    "まず録った音を、音の高さと時間の地図に変えます。",
+    "横が時間、縦が音の高さ、明るいほど大きな音です。",
+    "そこから、周りより特に強い点だけを残します。",
+    "すると音楽は、夜空の星のような点の並びになります。",
+    "雑音が混ざっても、強い点の多くはそのまま残ります。",
+    "次に、ひとつの星と、少し先にある星を線で結びます。",
+    "2つの音の高さと、その間の時間を、ひとつの数字にまとめます。",
+    "これが、曲の指紋のかけらです。",
+    "サーバーには、あらゆる曲の指紋が、索引のように並んでいます。",
+    "照らし合わせると、いろいろな曲が少しずつ当たります。",
+    "でも正解の曲だけは、当たった点が、まっすぐ一列に並びます。",
+    "Shazamはこの仕組みで、1000億回以上も曲を当ててきました。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {"title": "Avery Li-Chun Wang, An Industrial-Strength Audio Search Algorithm (ISMIR 2003, Shazam Entertainment): spectrogram peaks as constellation maps robust to noise, anchor points paired with points in a target zone (two frequencies plus time difference packed into a 32-bit hash), hashes sorted by value, the correct track shows matches on a diagonal line / one time-offset histogram peak", "url": "https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"},
+    {"title": "Apple Newsroom: Shazam hits 100 billion song recognitions (Nov 2024)", "url": "https://www.apple.com/newsroom/2024/11/shazam-hits-100-billion-song-recognitions/"}
+  ]
+}

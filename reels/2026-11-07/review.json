@@ -1,0 +1,8 @@
+{
+  "pass": false,
+  "summary": "Close, but not postable. The hook, the climax card (Midnight Drive / Luna Coast), the 1000億 counter and the Rakuda ending are all good now, and the イメージ badges are gone. But two flaws reported in round 2 are still there: while the voice says 「縦が音の高さ」 (14–17 s) the vertical axis has no label, and at 40 s a stray short dash still sits under the anchor star.",
+  "revise": [
+    {"section": 1, "request": "「縦が音の高さ」と言っている間（14〜17秒）に、縦軸ラベル「音の高さ →」がまだ出ていません。今は次の場面（21秒ごろ）まで出てきません。「縦が」の言葉に合わせて、横軸の「時間 →」と同じ出し方で、スペクトログラムの左側に縦書きで出してください。ズームで寄るときも画面に残してください。ズーム後に出る真っ白な縦の帯3本は、明るさを少し抑えてください。今はノイズのように見えます。"},
+    {"section": 4, "request": "「2つの音の高さと、」(39.6〜41秒)で、アンカーの星の左下（数字タグの少し上）に短い青い横線がまだ1本残っています。この要素ごと削除してください。数字「812」と「0.34s」がタグに飛び込むときに、タグの枠線の上に重なって見えます。タグの中まで一気に入って、枠と重ならないようにしてください。"}
+  ]
+}
