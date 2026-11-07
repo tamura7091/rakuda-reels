@@ -1,0 +1,44 @@
+{
+  "topic": "How a QR code still scans when a third of it is torn off (finder patterns and Reed-Solomon error correction)",
+  "why": "Candidates: (1) why a torn or dirty QR code still scans: everyone in Japan scans QR codes daily, it was invented in Japan, and the opening image (a QR being ripped, then scanning anyway) is the phenomenon itself moving; (2) how a smartphone touchscreen knows where your finger is: universal but the visual (a capacitor grid) is less surprising; (3) how a microwave heats food: well covered elsewhere and the visual is mostly invisible waves. Picked the QR code: a known product with a strong 'wait, how?', a CS classic underneath (error-correcting codes), and every step animates cleanly (corner squares lighting up, the 1:1:3:1:1 scan line, modules turning into bits, torn pieces being rebuilt). Not a repeat of anything in history.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく。冒頭はいきなり、黒白のQRコードの右下が紙ごとビリッと破れ、それでもスマホのカメラ枠が緑に光って読み取れる画から。次に、角の3つの四角が順に光り、1本の走査線が黒白黒白黒を1対1対3対1対1の幅で切り取る様子を見せる。チラシや段ボールの模様が流れて、その比率だけが見つからない演出。QRが斜め・逆さに回転しても角の四角が即座に捕まる。小さなマスが0と1に変わり、本物のデータの後ろに修復用のマスが追加で並ぶ。音楽CDのアイコンを一瞬。汚れたマスが計算で元の色に戻っていく。4段階のバーで7%、15%、25%、30%。最後は自動車部品の箱に貼られたQRへ。白い背景に黒、アクセントは緑1色のミニマルな見た目。",
+  "lines": [
+    "QRコードは、3割ほど破れても読めます。",
+    "しかも、斜めでも逆さでも一瞬です。",
+    "カメラはまず、角にある3つの四角を探します。",
+    "黒、白、黒、白、黒の幅が、1対1対3対1対1です。",
+    "開発チームはチラシや段ボールの模様を調べて、",
+    "印刷物にいちばん出てこない比率を選びました。",
+    "だから、どんな角度でも、すぐに見つかります。",
+    "残りの小さなマスは、ひとつひとつが0と1のデータです。",
+    "そこには中身とは別に、修復用のデータが足されています。",
+    "音楽CDにも使われる、リード・ソロモン符号です。",
+    "一部が汚れたり破れたりしても、計算で元の中身を復元できます。",
+    "修復の強さは4段階で、いちばん強いと、全体の約30%まで直せます。",
+    "QRコードは1994年、日本のデンソーウェーブが発表し、",
+    "自動車部品の管理から世界に広まりました。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Error Correction Feature | QRcode.com | DENSO WAVE",
+      "url": "https://www.qrcode.com/en/about/error_correction.html"
+    },
+    {
+      "title": "History of QR Code | QRcode.com | DENSO WAVE",
+      "url": "https://www.qrcode.com/en/history/"
+    },
+    {
+      "title": "What is a QR Code? | QRcode.com | DENSO WAVE",
+      "url": "https://www.qrcode.com/en/about/"
+    },
+    {
+      "title": "QR Code Standardization | QRcode.com | DENSO WAVE",
+      "url": "https://www.qrcode.com/en/about/standards.html"
+    }
+  ]
+}
