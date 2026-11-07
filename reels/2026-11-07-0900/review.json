@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "summary": "Both round-2 fixes landed: the timer now holds 約25秒 while the voice says it, and 「震源の真上」 is fully in frame. One flaw remains at the punchline: from 67.4 s on, the red label 「間に合わない」 sits under the red S-wave ring, which cuts through 「合」 and 「わ」, and the leader line runs into the text. Red text crossed by a red line is not postable.",
+  "revise": [
+    {
+      "section": 7,
+      "request": "「間に合わない」のラベル（67.4秒〜）が赤いS波の輪と重なっていて、輪の線が「合」「わ」の上を横切っています。引き出し線も文字にぶつかっています。ラベルを輪の外側（スマホ列の上、画面の左右に60px以上の余白を取った位置）に移して、輪がこれ以上広がっても文字に重ならないようにしてください。文字の後ろには暗いネイビーの下地（角丸、少し透ける程度）を敷き、引き出し線は文字の手前で止めるか、なくしてください。それ以外（スマホ、基地局、輪の動き、「震源の真上」）はそのままでお願いします。",
+      "quick": true
+    }
+  ]
+}

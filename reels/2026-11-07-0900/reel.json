@@ -1,0 +1,41 @@
+{
+  "topic": "How Japan's earthquake early warning makes your phone ring before the shaking arrives",
+  "why": "Candidates: (1) 緊急地震速報: every adult in Japan has heard that alarm go off on every phone in the train car before the ground moved, and almost nobody knows how it can come first. The answer is a race you can watch on a map: two seismic waves (P at about 7 km/s, S at about 4 km/s) spread out as rings, a seismometer catches the fast one, and a signal moving at about 300,000 km/s overtakes the slow, damaging wave to reach far-away phones first. It is a known system everyone carries in their pocket, the phenomenon moves from second 0, and it is evergreen (and a little scary, which makes people share it). (2) Face ID's dot projector: visual, but Apple publishes little about the matching, so the answer is thin. (3) Why a microwave heats food unevenly (standing waves, the chocolate experiment): fun, but a smaller 'wait, how?'. QR error correction and touchscreens were passed over before; Suica, Shazam and the optical mouse are done. Pick: the earthquake early warning. It is the most personal 'wait, how?' for a Japanese viewer, it follows the channel learnings (known system, a map with something moving from the first frame like the Google Maps reel at 151K), and the 'race' gives the script a natural build to a payoff.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく、少し緊張感を持たせて。冒頭はいきなり、電車の中で乗客たちのスマホの画面が一斉に赤く光り「緊急地震速報」の表示が出る画から。まだ誰も揺れていない。2行目で画面が日本地図へ引き、震源から2つの輪が広がり始める。P波は細く速い青い輪、S波は太く遅い赤い輪で、2つの輪の距離がだんだん開いていく様子を見せ、それぞれに「秒速約7km」「秒速約4km」のラベル。地図上に地震計の点を網の目のように約1700個並べ、青い輪が最初の点に触れた瞬間に光る。そこから光の線が気象庁のコンピューターへ走り、震源の位置と規模が数字で出て、各地の予想震度が色分けで広がる。「ここからが競争です」で、赤いS波の輪と、光の速さの信号を並べて競争させ、信号が一瞬で基地局からスマホへ一斉に届き、赤い輪がまだ遠くにあるうちに街のスマホが鳴る。100km先の街に「約25秒」のタイマー。最後は震源の真上の街で、輪と警報がほぼ同時に届く画。暗いネイビーの地図に、警報の赤1色のアクセント（P波だけ淡い青）。",
+  "lines": [
+    "まだ揺れていないのに、スマホが一斉に鳴り出します。",
+    "実はこのとき、地震の波と競争して勝っているんです。",
+    "地震が起きると、震源から2種類の波が広がります。",
+    "先に走るのは、小さく揺れるP波で、秒速およそ7キロです。",
+    "あとから来るのが、大きく揺れるS波で、秒速およそ4キロです。",
+    "地震計は、全国およそ1700か所に置かれています。",
+    "震源の近くの地震計が、先に届いたP波をとらえます。",
+    "気象庁のコンピューターが、震源と規模を自動で計算し、",
+    "どこがどれくらい揺れるかを予測します。",
+    "ここからが競争です。",
+    "電気の信号は、秒速およそ30万キロです。",
+    "予測は数秒で、周りの全てのスマホへ一斉に届きます。",
+    "だから、S波がまだ来ない街で、先にアラームが鳴るのです。",
+    "震源から100キロなら、強い揺れまで約25秒です。",
+    "ただ震源の真上では、警報が間に合わないこともあります。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "気象庁 緊急地震速報の仕組み: P波 秒速約7km、S波 秒速約4km、震源近くの地震計でP波を捉え震源・規模・震度を自動で推定、気象庁約690箇所と防災科研約1,000箇所の観測点、電気信号は約30万km/秒、解析・伝達に数秒、震源に近い所では間に合わない",
+      "url": "https://www.jma.go.jp/jma/kishou/know/jishin/eew/shikumi/shikumi.html"
+    },
+    {
+      "title": "JMA: Earthquake Early Warning starting 1 October 2007, Dos and Don'ts (P wave and S wave, warning a few seconds to tens of seconds ahead, may arrive with the shaking near the focus)",
+      "url": "https://d2borx18t6gdx.cloudfront.net/jma/en/Activities/EEW_Starting_1_October_2007_Dos_and_Donts.pdf"
+    },
+    {
+      "title": "NTT docomo Technical Journal: ETWS, the earthquake and tsunami warning built on cell broadcast (Area Mail), delivered to all phones in an area at once",
+      "url": "https://www.docomo.ne.jp/binary/pdf/corporate/technology/rd/technical_journal/bn/vol17_3/vol17_3_021jp.pdf"
+    }
+  ]
+}
