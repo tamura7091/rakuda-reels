@@ -47,7 +47,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/cache@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+      - uses: actions/cache/restore@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+        id: debs
         with:
           path: ~/debs
           key: debs-reel-v1
@@ -70,6 +71,11 @@ jobs:
           ~/bin/claude -p "Reply with OK" --model haiku --output-format json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);if(j.is_error){console.error("Claude sign-in failed: "+j.result);process.exit(1)}console.log("Claude sign-in ok")})'
           mkdir -p rakuda/data/channels/6c5e10a070d9
           printf '%s' "$CHANNEL_JSON" > rakuda/data/channels/6c5e10a070d9/channel.json
+      - uses: actions/cache/save@v4 # saved now, not at the end, so a failed run still keeps them
+        if: steps.debs.outputs.cache-hit != 'true'
+        with:
+          path: ~/debs
+          key: debs-reel-v1
       - name: A. Topic and script (Claude Code)
         id: script
         run: |

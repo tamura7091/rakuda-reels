@@ -8,7 +8,10 @@ mkdir -p ~/debs
 if ! ls ~/debs/*.deb > /dev/null 2>&1; then
   opts="-o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 -o Acquire::Retries=5"
   for i in 1 2 3; do timeout 300 sudo apt-get $opts update -qq && break; done
-  timeout 600 sudo apt-get $opts install -y -qq --no-install-recommends --download-only -o dir::cache::archives="$HOME/debs" "$@" > /dev/null
+  for i in 1 2 3; do
+    timeout 300 sudo apt-get $opts install -y -qq --no-install-recommends --download-only -o dir::cache::archives="$HOME/debs" "$@" > /dev/null && break
+    [ "$i" = 3 ] && exit 1
+  done
   sudo chown -R "$(id -u)" ~/debs
 fi
 sudo dpkg -i ~/debs/*.deb > /dev/null

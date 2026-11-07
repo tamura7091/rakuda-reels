@@ -51,7 +51,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/cache@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+      - uses: actions/cache/restore@v4 # the packages, so a run never waits on the apt mirror (tools/apt.sh)
+        id: debs
         with:
           path: ~/debs
           key: debs-render-v1
@@ -60,6 +61,11 @@ jobs:
           sh tools/apt.sh fonts-noto-cjk fonts-noto-color-emoji fonts-inter fonts-dejavu-core libegl1 libegl-mesa0 libgl1-mesa-dri libgles2
           sudo cp rakuda/docker/fonts.conf /etc/fonts/local.conf && fc-cache -f > /dev/null
           (cd rakuda/engine && npm ci --omit=dev --silent)
+      - uses: actions/cache/save@v4 # saved now, not at the end, so a failed run still keeps them
+        if: steps.debs.outputs.cache-hit != 'true'
+        with:
+          path: ~/debs
+          key: debs-render-v1
       - name: Render this shard's frames
         run: |
           gh release download "${{ inputs.tag }}" -R "$GITHUB_REPOSITORY" -p input.tar.gz -D /tmp/in
