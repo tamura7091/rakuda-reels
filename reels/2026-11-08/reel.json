@@ -1,0 +1,35 @@
+{
+  "topic": "How JPEG throws away over 90% of a photo without you noticing (8x8 blocks, DCT patterns, quantization)",
+  "why": "Candidates: (1) how a phone touchscreen knows where your finger is (capacitive grid): universal, but the visual is a static grid and the answer is close to known. (2) how a microwave heats food: familiar, but common 'heats from the inside' myths make the hook risky and the visual hard to read. (3) how JPEG keeps a photo looking the same after deleting over 90% of its data: a CS classic inside something everyone touches dozens of times a day, with a hook that promises an impossible result ('9割以上を捨てている、なのに違いが分からない') and holds back the trick. It is also the most animatable: a photo shatters into 8x8 tiles, a tile becomes a stack of 64 stripe patterns, the fine ones get rounded away to 0, and a long run of zeros collapses into one word. That matches the channel learnings (sorting and other CS classics shown as visualisations moving on screen reached 100K+). Picked (3).",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく、3Blue1Brownのような動く可視化で。冒頭はいきなり1枚の鮮やかな写真（夕焼けの空と街）が画面いっぱいに出て、その裏で「データ」の棒グラフがみるみる9割以上削れていくのに、写真は変わらない画から。次に写真に8×8の格子が走り、1マスがズームされて64個の点になる。そのマスが、なだらかな濃淡から細かいチェック柄まで8×8に並んだ64種類の縞模様のパネルに分解され、それぞれに混ぜる割合の数字が付く。空の部分ではなだらかな模様の数字だけが大きく光る。目のアイコンが細かい模様を見てもぼやけて見える演出のあと、右下の細かい模様の数字ほど大きな目盛りで丸められ、次々に0へ落ちていく。数字を左上からジグザグに並べ、後ろに続く0の列が「ここから先は全部0」の1枚の札にまとまって縮む。最後に元の写真と圧縮後の写真を並べ、ファイルサイズが約10分の1になったことを示す。暗いネイビーの背景に、アクセントは1色（シアン）。",
+  "lines": [
+    "この写真は、データの9割以上を捨てています。",
+    "なのに、あなたの目には違いが分かりません。",
+    "JPEGはまず、写真を8×8の小さなマスに切り分けます。",
+    "1マスは、64個の点です。",
+    "次に、そのマスを、64種類の縞模様の重ね合わせに置き換えます。",
+    "なだらかな濃淡から細かいチェック柄まで、それぞれの混ぜ具合を数字にします。",
+    "空や壁のような場所は、なだらかな模様だけでほぼ描けます。",
+    "そして人の目は、細かすぎる模様の違いに、ほとんど気づきません。",
+    "そこで、細かい模様の数字ほど、大ざっぱに丸めます。",
+    "すると、64個の数字のほとんどが、0になります。",
+    "なだらかな模様から順に並べると、後ろは0ばかりです。",
+    "その0の列は、「ここから先は全部0」の一言で済ませます。",
+    "こうして写真は、見た目をほぼ変えずに、約10分の1になります。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Gregory K. Wallace, The JPEG Still Picture Compression Standard (IEEE Trans. Consumer Electronics, 1992; revised from CACM April 1991)",
+      "url": "https://www.comp.nus.edu.sg/~cs5342/readings/wallace.pdf"
+    },
+    {
+      "title": "JPEG Committee: Overview of JPEG 1 (ISO/IEC 10918-1 / ITU-T T.81)",
+      "url": "https://jpeg.org/jpeg/"
+    }
+  ]
+}

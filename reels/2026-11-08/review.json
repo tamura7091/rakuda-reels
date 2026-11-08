@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "summary": "Round 3: the EOB card is now centred and steady, and the rest of the reel is strong (vivid photo hook, 9% bar, 8×8 zoom, stripe basis, rounding, 約1/10 ending, Rakuda CTA). But the payoff step (section 6, about 51–56 s) still breaks two of the earlier requests. Diagonal zigzag strokes and tick marks still cover the whole grid, and the zeros still scatter across the screen before they collapse. The number row also reads as '39-3-4-2 1 2', with the minus signs fused into dashes and the last 0 cut off at the right edge. So it is not posted today.",
+  "revise": [
+    {
+      "section": 6,
+      "request": "前回の修正のうち2点がまだ残っています。(1) 約52〜53秒：グリッド全体に斜めのシアン線と小さな「−」の目盛りが重なったままです。斜め線と目盛りは全部消して、細いシアンの線1本だけが左上の39から順にジグザグにたどるようにしてください。(2) 約54〜56秒：0がまだ画面中にバラバラに散らばり、右端の「0」が画面外で切れています。散らばる動きは無しにしてください。64個の数字は画面内に収まる1本の横一列に並べて、後ろの0の列だけが右から縮んで札に吸い込まれるようにしてください。(3) 数字の列「39-3-4-2 1 2」はマイナスがつながってハイフンに見えます。「39  −3  −4  −2  1  2」のように数字の間に均等なすき間を空けてください。中央の札「ここから先は全部0」とEOBの位置は今のままで大丈夫です。札の下に何も無いのに浮いている「イメージ」ラベルは消してください。",
+      "quick": true
+    }
+  ]
+}
