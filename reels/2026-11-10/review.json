@@ -1,0 +1,7 @@
+{
+  "pass": false,
+  "summary": "Close, but not postable yet. The round 2 fixes for sections 1 (white glow removed) and 2 (background panel removed) worked, and the hook, facts, sync and Rakuda ending are all solid. The darkness scene (61–67s) is still not fixed: the face is a blurry, smeared dark head with red blotches across the eyes and cheeks, sitting inside a visible black sphere outline.",
+  "revise": [
+    {"section": 6, "request": "暗闇のカット（61〜67秒）がまだ直っていません。今の顔は全体がぼやけてにじみ、目と頬のあたりに赤いしみ（赤い点の帯）がべったり乗っていて、頭のまわりには丸い黒い球の輪郭が背景から浮いて見えます。①顔にかかっているぼかし（被写界深度・ブラー）を外して、目・鼻・口の形がくっきり読めるようにしてください。②顔の表面の赤いしみ／赤い点の帯を消し、赤外線はiPhoneから顔へ伸びる赤い光線と、顔の輪郭をうっすら縁取る弱い赤いリムライトだけにしてください。③頭のまわりに見えている球体の縁が背景から浮かないよう、背景と同じ暗さに溶け込ませてください。iPhone・「照らす光」ラベル・鍵が開く動きはそのままで。", "quick": true}
+  ]
+}

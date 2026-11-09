@@ -1,0 +1,43 @@
+{
+  "topic": "How Face ID sees your face in 3D (30,000 invisible infrared dots and how their sideways shift becomes a depth map)",
+  "why": "Candidates: (1) Face ID's 30,000 invisible dots: a product nearly every phone owner uses daily, a shocking, instantly visual hook (a face covered in glowing dots), and one clean answer (the dots shift sideways depending on depth, so a flat photo fails). (2) How a microwave heats food (water molecules flipped 2.45 billion times a second): universal, but the molecule animation is abstract and the topic is well worn. (3) How a capacitive touchscreen finds your finger (an electrode grid): useful, but the visual is a static grid with weak payoff. Pick: Face ID. It fits the channel learnings best (a famous product, the phenomenon itself moving in the first 3 seconds), it has a 'wait, how?' hook that holds back the trick, and each step animates beautifully: dots raining onto a face, a projector-camera pair, dots sliding sideways, a point cloud turning into a 3D mesh, a flat photo failing.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説を、テンポよくシネマティックに。冒頭はいきなり、暗闇の中で人の顔に赤い光の点が何万個もパッと降り注ぎ、顔の形に沿って点が並ぶ画から。次にiPhone上部の黒い部分を拡大したカットアウェイで、投光器と赤外線カメラが少し離れて並ぶ様子。真上から見た図で、投光器から出た点が近い面と遠い面に当たり、カメラ側の写真では点の位置が横にずれる様子を動きで見せる。鼻先と頬で点のずれ幅が違うことを並べて比較し、点群が立体のワイヤーフレームの顔に組み上がる。平らな写真の顔では点がずれず、立体にならずロックが開かない対比。最後は数字の並びになった顔がチップ内の金庫で照合され、「100万分の1未満」を大きく。暗いネイビーの背景に、赤外線を表す赤1色のアクセント。",
+  "lines": [
+    "iPhoneは顔を向けるたび、あなたの顔に3万個以上の点を打っています。",
+    "でもその点は、目には一つも見えません。",
+    "画面上の黒い部分に、小さな投光器が隠れています。",
+    "そこから、見えない赤外線の点を、顔いっぱいに飛ばします。",
+    "それを、すぐ隣の赤外線カメラが撮ります。",
+    "投光器とカメラは、少しだけ離れて並んでいます。",
+    "だから、当たった場所が近いか遠いかで、写る点が横にずれます。",
+    "鼻の先と頬では、ずれる幅が違います。",
+    "このずれから、顔は3万個の点でできた、立体の地図になります。",
+    "顔写真は平らなので、立体にならず、ロックは開きません。",
+    "地図は数字に変えられ、チップの中の金庫で、登録した顔と比べられます。",
+    "他人の顔で開く確率は、100万分の1未満です。",
+    "暗闇でも開くのは、照らす光も、見えない赤外線だからです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Apple Newsroom: The future is here: iPhone X (dot projector, infrared camera, flood illuminator; more than 30,000 invisible IR dots)",
+      "url": "https://www.apple.com/newsroom/2017/09/the-future-is-here-iphone-x/"
+    },
+    {
+      "title": "Apple Support: About Face ID advanced technology (depth map, infrared image, 2D photos lack depth, total darkness, less than 1 in 1,000,000)",
+      "url": "https://support.apple.com/en-us/102381"
+    },
+    {
+      "title": "Apple Platform Security: Face ID security (depth map and 2D infrared image, mathematical representation compared in the Secure Enclave)",
+      "url": "https://support.apple.com/guide/security/face-id-security-sec067eb0c9e/web"
+    },
+    {
+      "title": "US8150142B2, Depth mapping using projected patterns (PrimeSense): depth from the transverse shift of projected spots, by triangulation",
+      "url": "https://patents.google.com/patent/US8150142B2/en"
+    }
+  ]
+}
