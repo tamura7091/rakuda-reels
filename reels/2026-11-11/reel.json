@@ -1,0 +1,45 @@
+{
+  "topic": "How two strangers agree on a secret key while everyone is listening (Diffie-Hellman key exchange, the paint-mixing trick behind HTTPS)",
+  "why": "Candidates: (1) Diffie-Hellman key exchange: a CS classic hidden behind the padlock icon everyone sees every day, with a paradox hook (making a shared secret in front of eavesdroppers) and one perfectly visual answer (paint colours mixing, swapped, mixed again into the same colour on both sides). (2) PageRank: famous and CS-classic, the random-surfer dots pooling on popular pages animate well, but the payoff (links as votes) is widely known and less surprising. (3) Phase-detection autofocus in phone cameras: everyday product, but the split-image optics are hard to follow in under a minute with no maths. Pick: Diffie-Hellman. It matches the channel learnings (CS classics and things everyone uses but nobody understands; the phenomenon moving from second one, here colours flowing between two phones while a third figure copies everything), the hook promises an apparently impossible result without giving away the trick, and every step is a single coloured blob the editor can animate. It does not repeat any past topic (Suica, mouse, EEW, QR, Shazam, JPEG, Face ID, maps, sorting).",
+  "voice": "Konoha",
+  "instruction": "テック系の解説を、テンポよく、きれいな色の動きで。冒頭はいきなり、左右に2台のスマホ、その間を光る通信の線が行き来し、真ん中のフードの人影が流れるデータを全部コピーしている画から。次にスマホの鍵マークを拡大。そこから絵の具の世界へ切り替え、左右の二人の前に共通の黄色の絵の具、それぞれの手元に隠した秘密の色（赤と青）。黄色に秘密の色が渦を巻いて混ざり、できたオレンジと緑のしずくが真ん中を通って交換される。途中で人影がそのしずくをコピーする。混ざった色を元に分けようとしてもできない様子を、分離に失敗するアニメで。受け取った色に自分の秘密の色を混ぜると、左右でまったく同じ茶色ができ、2つのカップを並べて一致を強調。人影の手元では違う色にしかならない対比。最後に絵の具が巨大な数字の列に変わり、「混ぜるのは一瞬、戻すのはほぼ不可能」の一方向の矢印。1976年の論文の年号と、ブラウザの鍵マークに戻って締める。暗いネイビーの背景に、絵の具の色だけが鮮やかに光る。",
+  "lines": [
+    "盗み聞きされたまま、",
+    "二人だけの合言葉を作れます。",
+    "スマホの鍵マークの裏で、毎日使われている仕組みです。",
+    "絵の具で考えてみます。",
+    "まず二人で、共通の色を決めます。この黄色は見られても平気です。",
+    "次にそれぞれ、自分だけの秘密の色を選びます。",
+    "黄色に秘密の色を混ぜて、できた色を相手に送ります。",
+    "盗み見られても、混ざった絵の具は元の色に分けられません。",
+    "受け取った色に、自分の秘密の色をもう一度混ぜます。",
+    "すると二人の手元に、まったく同じ色ができます。",
+    "どちらも中身は、黄色と、二人の秘密の色だからです。",
+    "盗み見た人は混ぜた色しか持っていないので、同じ色は作れません。",
+    "本物では、絵の具の代わりに巨大な数を使います。",
+    "混ぜるのは一瞬で、戻すのはほぼ不可能な計算です。",
+    "1976年に生まれたこの方法で、ブラウザは今も接続のたびに鍵を作っています。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "RFC 8446: The Transport Layer Security (TLS) Protocol Version 1.3 ((EC)DHE key exchange modes; static RSA removed; all public-key key exchange provides forward secrecy)",
+      "url": "https://www.rfc-editor.org/rfc/rfc8446"
+    },
+    {
+      "title": "RFC 2631: Diffie-Hellman Key Agreement Method (ZZ = yb^xa mod p = ya^xb mod p: each side combines its private key with the other's public value to get the same secret)",
+      "url": "https://www.rfc-editor.org/rfc/rfc2631"
+    },
+    {
+      "title": "Stanford FSI: Stanford cryptography pioneers Whitfield Diffie and Martin Hellman win ACM A.M. Turing Award (1976 paper New Directions in Cryptography; communicating over an open channel with no prearrangement; billions use it daily)",
+      "url": "https://fsi.stanford.edu/node/19279"
+    },
+    {
+      "title": "Diffie and Hellman, New Directions in Cryptography, IEEE Transactions on Information Theory, 1976 (Stanford copy)",
+      "url": "https://ee.stanford.edu/~hellman/publications/24.pdf"
+    }
+  ]
+}
