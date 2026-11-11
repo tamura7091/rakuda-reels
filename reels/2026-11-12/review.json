@@ -1,0 +1,9 @@
+{
+  "pass": false,
+  "summary": "Not postable. The section 7 label fix brought in a worse problem: on 「動く衛星を狙い続けられます」 (53–56 s) and again on 「板は動かないまま」 (62–67 s), a dark grey veil covers the stage, so the dish, the beam and the satellites almost disappear just as the payoff plays. The pond 'aha' is better (all 5 stones' ripples now stay visible), but the slanted line still floats above them, runs off the right edge, and the cut to the board comes before 「傾くのと同じです」 ends.",
+  "revise": [
+    {"section": 7, "request": "53〜56秒「これで、動く衛星を狙い続けられます。」で、画面全体に暗いグレーの膜がかかって、白い板・シアンのビーム・衛星がほとんど見えません。この暗くするオーバーレイを外して、52秒台と同じ明るさのまま、白い板とビームが衛星を追い続ける画を最後まで見せてください。「動かない板」ラベルは今の位置と暗いネイビーの背景のままで、引き出し線を板の左上の角まできちんと届かせてください。", "quick": true},
+    {"section": 8, "request": "62〜67秒「板は動かないまま、次の衛星へ、狙いを切り替えているのです。」で、画面が暗いグレーにくすんで、板もビームも衛星もほとんど見えません。暗くするオーバーレイを外して、58〜61秒と同じ明るさで、白い板からのシアンのビームが次の衛星へパッと切り替わる瞬間を「切り替えている」に合わせてはっきり見せてください。「動かない板」ラベルはそのまま残してください。", "quick": true},
+    {"section": 5, "request": "39〜42秒の池のシーンで、斜めの線がまだ波紋から離れて上に浮いたまま、画面の右端で切れています。5つの波紋の外側の縁にぴったり接する位置まで線を下げ、両端とも画面の内側(左右60px以上の余白)に収めてください。また「傾くのと同じです。」を言い終わる42.4秒まで池の画を残し、そのあとで板のシーンに切り替えてください。", "quick": true}
+  ]
+}

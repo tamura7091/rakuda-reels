@@ -1,0 +1,52 @@
+{
+  "topic": "How a flat Starlink dish tracks satellites racing across the sky without moving (phased array beam steering by tiny timing delays)",
+  "why": "Candidates: (1) Starlink's flat dish, a phased array: a famous product with a paradox anyone can see (a board that never turns, yet follows satellites at about 7.8 km/s), and one beautiful visual answer (rows of ripples whose start times are staggered tilt the wave and swing the beam). (2) Why a microwave oven heats unevenly (standing waves and hot spots): everyday and visual, but the payoff (the turntable) is mostly known. (3) How smart TVs recognise what you are watching (ACR fingerprinting, trending on Hacker News this week): timely, but close to our Shazam reel and leans into privacy politics. Pick: Starlink. It follows the channel learnings (a known product plus a physics trick that animates on its own, the phenomenon moving from second one: a still board with a beam sweeping across the sky after a moving satellite), the hook promises an impossible-looking result while holding back the trick, and every step is one wave picture the editor can show. It repeats no past topic (Suica, mouse, earthquake warning, QR, Shazam, JPEG, Face ID, Diffie-Hellman, GPS, noise cancelling).",
+  "voice": "Konoha",
+  "instruction": "テック系の解説を、テンポよく、波の動きを主役に。冒頭はいきなり、夜空の下の屋根に置かれた白く平たい板のアンテナ。板はぴくりとも動かないのに、板から伸びる光のビームが、空を横切っていく衛星を追ってスーッと首を振っている画から。次に昔ながらのパラボラが、モーターでぎこちなく向きを変える対比。衛星が地球をぐるっと高速で回る軌道の図。そこから板を透かして、中に小さなアンテナの粒が格子状に並ぶ断面へ。全部の粒から同時に波紋が出て、重なって板の正面へ強い波が進むアニメ。次に池を上から見た図で、石を端から順にポチャ、ポチャと落とすと、波の列が斜めに傾く様子。同じことを板の上で、粒が端から順にわずかに遅れて光り、ビームが斜めに曲がる。遅れの量を表す小さなタイマーを変えると、ビームが左右になめらかに振れる。最後は板の上を衛星が次々と通過し、15秒ごとに狙いが次の衛星へパッと切り替わる。暗いネイビーの背景に、波とビームだけをシアン1色で光らせる。",
+  "lines": [
+    "動かない板が、",
+    "秒速7キロを超える衛星を追いかけています。",
+    "スターリンクのアンテナです。",
+    "普通のパラボラは、衛星の方へ向きを変えて狙います。",
+    "でもこの衛星は約90分で地球を一周し、すぐ空を横切ってしまいます。",
+    "そこで板の中に、小さなアンテナをたくさん並べました。",
+    "全部が同時に電波を出すと、波が重なり、板の正面へ強く進みます。",
+    "では端から順に、ほんの少しずつ遅らせて出してみます。",
+    "池に石を端から順に落とすと、波の列が斜めに傾くのと同じです。",
+    "すると波が重なって強くなる方向も、斜めに曲がります。",
+    "遅らせ方を変えるだけで、電波の向きが変わるのです。",
+    "これで、動く衛星を狙い続けられます。",
+    "しかもスターリンクは、15秒ごとに、つなぐ衛星を割り当て直しています。",
+    "板は動かないまま、次の衛星へ、狙いを切り替えているのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "SpaceX Non-Geostationary Satellite System, technical attachment (submission to NZ Radio Spectrum Management): user terminals use phased array technologies for highly directive, steered beams that track the low-Earth orbit satellites",
+      "url": "https://www.rsm.govt.nz/assets/Uploads/documents/consultations/2018-preparing-for-5g/c4c9f26604/300.3-spacex-submission-preparing-for-5g.pdf"
+    },
+    {
+      "title": "ESA: Types of orbits (LEO satellites travel at around 7.8 km per second and circle Earth in about 90 minutes)",
+      "url": "https://www.esa.int/Our_Activities/Space_Transportation/Types_of_orbits"
+    },
+    {
+      "title": "NOAA NSSL: Phased Array Radar (the flat antenna remains stationary and steers its beam electronically, unlike dishes that turn and tilt)",
+      "url": "https://www.nssl.noaa.gov/tools/radar/par/"
+    },
+    {
+      "title": "RF Essentials: How does a phased array antenna steer its beam electronically without mechanical movement? (in-phase elements add constructively in front of the array; a progressive phase shift across elements tilts the beam; microseconds vs seconds for mechanical rotation)",
+      "url": "https://www.rfessentials.com/rf-knowledge-base/how-does-a-phased-array-antenna-steer-its-beam-electronically-without-mechanical/"
+    },
+    {
+      "title": "Analog Devices, Analog Dialogue: Phased Array Antenna Patterns, Part 1 (time delay between elements, emulated by phase shift, steers the beam)",
+      "url": "https://www.analog.com/en/analog-dialogue/articles/phased-array-antenna-patterns-part1.html"
+    },
+    {
+      "title": "Tanveer et al., Making Sense of Constellations (arXiv 2307.00402): Starlink uses a global scheduler to assign satellites to user terminals every 15 seconds",
+      "url": "https://arxiv.org/abs/2307.00402"
+    }
+  ]
+}
