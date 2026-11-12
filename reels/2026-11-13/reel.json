@@ -1,0 +1,46 @@
+{
+  "topic": "Why traffic jams appear out of nowhere (the 2008 Japanese ring-road experiment: 22 cars, no bottleneck, a jam wave moving backward)",
+  "why": "Candidates: (1) Phantom traffic jams, the Sugiyama ring-road experiment (Nagoya Univ. et al., 2008): a famous experiment done in Japan, about something every Japanese adult has sat in (高速の渋滞), with a picture that moves from second one (cars circling a ring, a knot of stopped cars forming from nothing) and a second twist that animates beautifully (the jam itself crawls backward at about 20 km/h, the same speed as real highway jams); it is also circulating again in English media ('18 years ago, scientists solved the mystery of phantom traffic jams'). (2) How a phone's MEMS accelerometer knows which way is up (a tiny silicon comb moving inside a cutaway): very visual, but a weaker 'wait, how?' for most viewers. (3) Why a microwave heats unevenly (standing waves): everyday, but the turntable answer is half-known and it was a runner-up yesterday. Pick: the phantom jam. It follows the channel learnings (famous experiment plus a phenomenon moving in the first 3 seconds, like the double slit and sorting reels), the hook promises an impossible result (a jam with no signal and no accident) and holds back the trick, each step is one motion on the ring, and it repeats no past topic.",
+  "voice": "Konoha",
+  "instruction": "科学実験の解説をテンポよく、上から見た円の道を主役に。冒頭はいきなり、真上から見た円形の道を22台の小さな車が等間隔でぐるぐる回っていて、ある一点で数台がギュッと詰まり、止まってしまう画から（信号も障害物もない、が一目でわかるように）。次に「230m」「22台」「30km/h」のラベル付きで、きれいに等間隔に回る状態。1台がわずかに減速すると、その車が少し赤く光り、後ろの車ほど赤が濃くなる（ブレーキの強さ）ブレーキランプの連鎖。車間の揺れが波のように大きくなり、数台が完全停止してかたまりになる。続いて、車は時計回りに進むのに、赤いかたまりだけが反時計回りにじわじわ動く様子を、先頭の車が抜け出し、後ろに車が加わる動きで見せる。かたまりに「約20km/h」のラベル。最後は円がほどけて実際の高速道路の直線になり、同じ赤いかたまりが後ろへ進んでいく画。暗いネイビーの背景に、車は白、ブレーキと渋滞だけを赤1色で光らせる。",
+  "lines": [
+    "信号も事故もない円の道で、",
+    "渋滞が勝手に生まれました。",
+    "2008年、名古屋大学などの実験です。",
+    "1周230メートルの道に、22台の車。",
+    "全員、時速30キロで一定に走ります。",
+    "最初は、みんな同じ間隔で、スムーズに進みます。",
+    "でも誰かが、ほんの少しだけ速度を落とします。",
+    "後ろの車は少し遅れて気づき、強めにブレーキを踏みます。",
+    "その後ろは、もっと強く。",
+    "小さな揺れが、後ろへ伝わるほど大きくなり、",
+    "ついには数台が、完全に止まってしまいます。",
+    "しかも、この渋滞のかたまりは、車と逆向きに進みます。",
+    "先頭の車が抜け出し、後ろに次の車が加わるからです。",
+    "かたまりは時速およそ20キロで、後ろへ動いていきます。",
+    "本物の高速道路の渋滞と、ほぼ同じ速さです。",
+    "車が混み合えば、小さなブレーキ一つで、渋滞は生まれるのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Sugiyama et al., Traffic jams without bottlenecks: experimental evidence for the physical mechanism of the formation of a jam, New Journal of Physics 10, 033001 (2008): 230 m circuit, 22 vehicles, about 30 km/h, vehicles in the cluster stop completely, cluster moves backward at roughly 20 km/h like jams on real highways, a bottleneck is only a trigger",
+      "url": "https://iopscience.iop.org/article/10.1088/1367-2630/10/3/033001"
+    },
+    {
+      "title": "ScienceDaily (Institute of Physics), Shockwave traffic jam recreated for first time (2008)",
+      "url": "https://sciencedaily.com/releases/2008/03/080304075707.htm"
+    },
+    {
+      "title": "Fortune: human reactions have a slight delay, so the driver behind must brake even harder and the chain reaction continues backward (Bayen, Vanderbilt; Seibold, Temple)",
+      "url": "https://fortune.com/2022/12/06/nissan-gm-toyota-ai-cruise-control-phantom-traffic-jams"
+    },
+    {
+      "title": "NEXCO East: unconscious slowing on uphill and sag sections makes following cars close up and brake in a chain; the first car does not notice it caused the jam",
+      "url": "https://www.e-nexco.co.jp/en-US/pressroom/head_office/2006/0126/00006044.html"
+    }
+  ]
+}
