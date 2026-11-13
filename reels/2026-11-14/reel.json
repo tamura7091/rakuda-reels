@@ -1,0 +1,44 @@
+{
+  "topic": "Why a torn or dirty QR code still scans (finder patterns plus Reed-Solomon error correction: data stored as points on a line, so missing points can be redrawn)",
+  "why": "Candidates: (1) Why a torn QR code still scans: everyone in Japan scans QR codes daily (PayPay, menus, tickets), it was invented in Japan (Denso Wave, 1994), the opening picture is the phenomenon itself (a QR code with a bite torn out, a phone scanning it and succeeding), and the answer is a beautiful, simple visual (numbers become points on a graph, a line is drawn through them, extra points are added on the same line, points get erased, and the line still redraws the lost ones). It is a CS classic (Reed-Solomon, also in CDs and space probes) told without maths. (2) How Shazam recognizes a song in a noisy cafe (spectrogram peaks as a star map): very visual, but fewer Japanese viewers use Shazam by name. (3) Why a microwave heats unevenly (standing waves): everyday, but the turntable answer is half-known. Pick: the QR code. It follows the channel learnings (known product plus a CS classic, the phenomenon moving in the first 3 seconds, a hook that states an impossible-looking result and holds back the trick), and no past reel covers it.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく。冒頭はいきなり、右下が大きく破れて欠けたQRコードにスマホのカメラ枠が重なり、「ピッ」と緑のチェックで読み取れる画から（欠けているのに読める、が一目でわかるように）。次に、QRコードの3つの角にある大きな四角が順に光り、その上を走査線が横切って「1:1:3:1:1」の白黒の幅を示す。コードを回転させても3つの四角がすぐ見つかる動き。続いて白黒の小さなマスが8個ずつまとまり、数字に変わる。その数字が方眼のグラフ上の2つの点になり、2点を通る直線がスッと引かれる。同じ直線の上に新しい点が2つ追加され、4点になる。そのうち2点が汚れのように消えても、残る2点から同じ直線が引き直され、消えた点が線の上にふたたび現れる。直線が複雑な曲線に変わり「リード・ソロモン符号」のラベル。最後は冒頭の破れたQRコードに戻り、欠けた部分がマスごとに埋まって復元され、「約30%」のラベル。暗いネイビーの背景に白いQRコード、データの点と線はシアン1色、消える部分だけ赤で見せる。",
+  "lines": [
+    "破れたQRコードでも、スマホは一瞬で読み取ります。",
+    "消えた部分は、どこから戻ってくるのでしょう。",
+    "まずカメラは、3つの角にある大きな四角を探します。",
+    "白黒の幅が、1対1対3対1対1。",
+    "印刷物にまず出ない比率なので、どの向きでもすぐ見つかります。",
+    "次に、小さなマスを8個ずつ、1つの数字として読みます。",
+    "例えば、2つの数字を、グラフ上の2つの点だと考えます。",
+    "2つの点を通る直線は、1本だけです。",
+    "その直線の上に、点を2つ足して、合計4つの点を書き込みます。",
+    "すると、どの2つが消えても、残りの2つから同じ直線が引けます。",
+    "消えた点は、線の上をたどれば元通りです。",
+    "実際は複雑な曲線を使い、リード・ソロモン符号と呼ばれます。",
+    "いちばん強い設定なら、全体の約3割が欠けても読み取れます。",
+    "1994年、日本のデンソーウェーブが生んだ仕組みです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "DENSO WAVE, QR Code error correction feature: Reed-Solomon code is added to the data so it can be restored if the code is dirty or damaged; works at the byte (codeword) level; four levels L/M/Q/H",
+      "url": "https://www.qrcode.com/en/about/error_correction.html"
+    },
+    {
+      "title": "DENSO WAVE, History of QR Code: announced 1994; three position detection patterns; 1:1:3:1:1 is the least used black/white ratio on printed matter, so orientation is found at any scanning angle",
+      "url": "https://www.qrcode.com/en/history/"
+    },
+    {
+      "title": "KEYENCE, What is a QR code?: developed by DENSO WAVE in 1994; finder patterns at three corners, readable from any direction; error correction L 7%, M 15%, Q 25%, H 30% of total code size",
+      "url": "https://www.keyence.com/ss/products/auto_id/codereader/basic_2d/qr.jsp"
+    },
+    {
+      "title": "UC Berkeley CS70 Note 9, Error Correcting Codes: a polynomial of degree n-1 is determined by any n of its values, so the message is rebuilt from any n of the n+k packets sent (Reed-Solomon erasure recovery)",
+      "url": "https://sp26.eecs70.org/assets/pdf/notes/n9.pdf"
+    }
+  ]
+}
