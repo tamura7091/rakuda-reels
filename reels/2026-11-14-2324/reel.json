@@ -1,0 +1,44 @@
+{
+  "topic": "How a plane lands in thick fog when the pilots cannot see the runway (ILS: two radio beams with a low and a high tone, and the plane flies where both sound equally loud)",
+  "why": "Candidates: (1) How a plane lands in fog (Instrument Landing System): everyone has flown or waited through a fog delay, it is this week's news mood (the FAA nationwide ground stop topped Hacker News), the answer is one surprising, visual trick (two overlapping radio fans carry a low and a high tone; where they are equally loud is the exact centerline; a second pair does the same vertically; the two lines cross into an invisible road in the sky), and it animates beautifully: beams fanning out over a runway, a needle swinging, a plane locking onto a glowing line through fog. (2) How a smartphone touchscreen knows where your finger is (a grid of electrodes sensing charge): universal but the answer is a static grid and less of a 'wait, how?'. (3) How an elevator group decides which car comes: relatable but the algorithms are proprietary and hard to source. Pick: ILS. It fits the channel learnings: a famous, real system with a mechanism nobody knows, the phenomenon moving in the first 3 seconds (a jet descending into fog onto an invisible runway), a hook that states an impossible-looking result and holds back the trick, and no overlap with past reels (GPS, Starlink and maps were about satellites and routes, not landing).",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく、映画のように。冒頭はいきなり、濃い霧の中を旅客機が降下していく画から。前方は真っ白で滑走路は見えないのに、機体は迷わずまっすぐ進み、霧の下から滑走路灯が現れた瞬間にちょうど中心線の上に接地する（見えないのに降りられる、が一目でわかるように）。次に真上からの俯瞰図に切り替え、滑走路の向こう端にアンテナ列が並び、そこから扇形の電波が2つ、左右に少しずらして手前へ広がる。着陸する側から見て左の扇は低い音（黄色）、右の扇は高い音（青）として、音の波形アイコンを添える。飛行機のアイコンが左にずれると黄色が濃くなり、コックピットの計器の針が右へ振れる。中央に戻ると黄色と青が同じ強さになり、針がまっすぐ中央で止まり、中心線が白く光る。続いて横からの断面図で、滑走路脇のアンテナから上に黄色、下に青の扇が出て、釣り合う線が「約3°」のゆるい下り坂として光る。最後に立体の3Dビューで、左右の線と上下の線が交わり、霧の空中に光る一本道ができ、飛行機がその上を滑り降りて接地。「ILS」のラベル、締めに「見通し 46m」の数字。暗いネイビーの背景、霧は白いもや、電波は黄色と青の2色、中心の一本道だけ白く光らせる。",
+  "lines": [
+    "霧で滑走路が見えなくても、旅客機はまっすぐ着陸できます。",
+    "見えない滑走路を、どうやって見つけるのでしょう。",
+    "鍵は、滑走路の向こう端に並ぶアンテナです。",
+    "ここから、扇形の電波が2つ、左右に出ています。",
+    "左には低い音、右には高い音の信号が乗っています。",
+    "飛行機は、この2つの音の強さを聞き比べます。",
+    "左にずれると低い音が強まり、針が「右へ」と示します。",
+    "2つがぴったり同じ強さになる線が、滑走路のど真ん中です。",
+    "高さも、同じ仕組みです。",
+    "滑走路の脇のアンテナが、上に低い音、下に高い音を出します。",
+    "釣り合う線は、約3度のゆるやかな下り坂です。",
+    "左右の線と上下の線が重なると、空中に見えない一本道ができます。",
+    "計器着陸装置、ILSに沿えば、自動操縦が接地まで飛べます。",
+    "対応した空港と機体なら、見通しが46メートルでも着陸できます。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "FAA Instrument Flying Handbook (FAA-H-8083-15B), Ch. 9 Instrument Landing Systems: localizer gives left/right guidance, antenna at the departure end of the runway; glideslope usually 3°; GS antenna beside the runway 750-1,250 ft from the approach end; figure labels the 90 Hz and 150 Hz sectors",
+      "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-15B.pdf"
+    },
+    {
+      "title": "FAA Aeronautical Information Manual, Ch. 1 Sec. 1 (1-1-9 ILS): localizer transmitted at the far end of the runway; glide path normally 3 degrees; autoland or HUD to touchdown; Category IIIb RVR less than 700 ft but not less than 150 ft",
+      "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap1_section_1.html"
+    },
+    {
+      "title": "EASA ATPL Radio Navigation training notes (Nordian): localiser left lobe 90 Hz, right lobe 150 Hz as seen on approach; left of centre receives more 90 Hz and the needle says correct right; zero DDM line is the centre line; glide path upper lobe 90 Hz, lower 150 Hz, generally 3°",
+      "url": "https://www.nordian.net/REPOSITORY/111_easa_radio_navigation_demo.pdf"
+    },
+    {
+      "title": "14 CFR 171.261 and 171.265 (eCFR): localizer and glide path patterns modulated by 90 Hz and 150 Hz tones, 150 Hz predominating on the right of the approach and below the glide path, 90 Hz on the left and above",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-J/part-171"
+    }
+  ]
+}

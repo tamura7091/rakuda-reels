@@ -1,0 +1,21 @@
+{
+  "pass": false,
+  "summary": "Not ready to post. The hook, the yellow/blue fans (now fixed), the balance view, the 3° side view and the 46 m countdown are strong, but 8.96–14 s is still a grey void: a tiny antenna bar floats on a flat grey plane with visible panel seams (dark band on top at 12 s, a lighter rectangle on the right at 14 s), so for 5 seconds right after the hook the viewer has nothing to look at. Smaller problems: section 4's second line is a streak coming in from the screen corner, and the 「カット 0件」 text runs over the edge of the Rakuda panel.",
+  "revise": [
+    {
+      "section": 1,
+      "request": "前回の依頼の後半がまだ直っていません（扇の黄色と青は直りました）。8.96〜14秒は今もグレーの平面に小さなアンテナ列の板が浮いているだけで、12秒付近では画面上部に暗い帯、14秒付近では右側だけ明るい長方形の段差が見えます。背景全体をセクション2と同じ暗いネイビー(#0b1730)の1枚に統一して、帯と段差を消してください。アンテナ列を今の2倍の大きさにして画面上部の中央に置き、8.96秒の最初から手前に滑走路（暗いアスファルトと白い中心線の灯り）がアンテナ列まで伸びている状態にしてください。「アンテナ列」のラベルは薄くせず、はっきり白で出してください。また16秒前後で扇がいったん白っぽいグレーで塗られるので、最初から黄色と青で出してください。",
+      "quick": true
+    },
+    {
+      "section": 4,
+      "request": "52.8〜55.5秒の2本目の線が、画面の左下の角から斜めに入ってくる線になっていて、どこかから飛んできた筋に見えます。2本とも飛行機の前方の画面中央付近に置いてください（中心線に沿った左右の線と、少し角度をずらした約3°の上下の線）。少し離れた2本が55.5秒の「一本道」でゆっくり近づき、1本に重なって強く光るようにしてください。画面の端から入ってくる線は消してください。",
+      "quick": true
+    },
+    {
+      "section": 6,
+      "request": "編集画面のパネルで、右上の「カット 0件」がパネルの右の枠からはみ出しています。文字を小さくして、パネルの内側（右の枠から24px以上内側）に収めてください。",
+      "quick": true
+    }
+  ]
+}
