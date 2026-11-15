@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "summary": "The round-2 fix worked: at 23.4–27.7 s the zoom is gone, and the grid, haze and both axis labels (「高さ↑」「時間→」) now stay inside the frame. One new flaw still blocks posting: from about 24.5 to 26.5 s the 「雑音」 callout label sits right on top of 「時間→」 in the bottom-left corner and reads as garbled 「時雑音→」, during the very line about noise. The hook, the sync, the 98% ending and the 「Rakuda」 ending are all good.",
+  "revise": [
+    {
+      "section": 1,
+      "request": "「強い点は、雑音が混ざっても消えにくいのです」（23.4〜27.7秒）で、雑音のもやに付く「雑音」の吹き出しラベルが左下の軸ラベル「時間→」にぴったり重なり、「時雑音→」と文字がつぶれて読めません。「雑音」ラベルと引き出し線は、星図の枠の内側の右上あたり（どの星にも、上のタイトルの帯にも重ならない位置）へ移し、暗い下地を付けて読めるようにしてください。「時間→」「高さ↑」は今の位置のまま、最後まで何とも重ならないようにしてください。カメラの寄りなし、格子・星・もやの見せ方は今のままで大丈夫です。",
+      "quick": true
+    }
+  ]
+}

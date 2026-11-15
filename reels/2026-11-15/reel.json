@@ -1,0 +1,32 @@
+{
+  "topic": "How Shazam names a song from a few noisy seconds (the audio becomes a star map of loud peaks, pairs of stars become fingerprints, and the right song is the one whose matches all line up at the same moment)",
+  "why": "Candidates: (1) How Shazam recognises a song in a noisy cafe: an app almost every phone user has tried and nobody can explain. The answer is surprising (it ignores the melody and matches a star map of loud peaks) and every step animates well: a spectrogram glows, it collapses into a field of stars, stars join into pairs, and votes pile into one bar. This is a CS classic with a primary source, Avery Wang's 2003 Shazam paper. (2) How a smartphone touchscreen knows where your finger is: universal, but the answer is a static electrode grid and the 'wait, how?' is weaker. (3) How an elevator group decides which car comes: relatable, but the real algorithms are proprietary and hard to source. Pick: Shazam. It fits the channel learnings: a known product plus a CS-classic algorithm, the phenomenon moving in the first 3 seconds (a phone listening as sound waves turn into stars), and a hook that promises an impossible-looking result (a noisy cafe, a few seconds) while holding back the trick. Past reels (noise cancelling, QR error correction, vectorisation) do not cover audio fingerprinting.",
+  "voice": "Konoha",
+  "instruction": "テック系の解説をテンポよく、映像で驚かせる。冒頭はいきなり、ざわざわしたカフェ（人の話し声やカップの音を波形の揺れで表現）の中でスマホが音を拾い、波形がスマホに吸い込まれて画面に曲名カードがポンと出る画から。次に音が横長の帯（スペクトログラム）に変わる。横が時間、縦が音の高さで、強い音ほど明るく光る。周りより特に明るい点だけが残り、ほかは暗く消えていき、帯は夜空の星図のようになる。雑音のもやを重ねても星は消えずに残る様子を見せる。続いて近くの星どうしを光る線で2つずつ結び、1本の線から「高さA・高さB・間の時間」の3つの数字が出て、小さな指紋アイコンにまとまる。そのあと何百もの曲の帯が縦に並ぶ棚のようなデータベースに、指紋が一斉に飛んでいって当たりの箇所が光る。最後は投票の画。違う曲では当たりの位置がばらばらに散り、正しい曲だけ当たりが「◯秒目」の1点に積み上がって高い棒になり、曲名が確定する。仕上げに「指紋の98%が消えても当たる」を数字で見せる。暗いネイビーの背景に、星と線はシアンの1色のアクセント、正解の棒だけ白く光らせる。",
+  "lines": [
+    "騒がしいカフェでも、Shazamは数秒で曲名を当てます。",
+    "でも、聞いているのはメロディではありません。",
+    "まず音を、横が時間、縦が音の高さの地図に変えます。",
+    "そこから、周りより特に強い点だけを残します。",
+    "すると曲は、夜空の星のような点の集まりになります。",
+    "強い点は、雑音が混ざっても消えにくいのです。",
+    "次に、近くの星を2つずつ線で結びます。",
+    "2つの音の高さと、その間の時間が、ひとつの指紋になります。",
+    "サーバーには、曲ごとにこの指紋が保存されています。",
+    "録音の指紋と同じものを、一気に探し出します。",
+    "当たった指紋はそれぞれ、録音が曲の何秒目からかを示します。",
+    "違う曲では、その答えがばらばらです。",
+    "正しい曲だけ、答えがぴたりと一点にそろいます。",
+    "だから雑音で指紋の98%が消えても、曲を当てられるのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Avery Li-Chun Wang, \"An Industrial-Strength Audio Search Algorithm\" (Shazam Entertainment, ISMIR 2003): spectrogram peaks kept only if louder than their neighbours, a sparse 'constellation map' that resembles a star field, robust to noise and EQ; hashes from pairs of peaks (anchor and target zone) made of two frequencies plus the time difference; each hash stored with its time offset; a match is a diagonal line of time pairs found with a histogram of offset differences; a heavily corrupted 15 s sample matches with only about 1-2% of hashes surviving; works through voices, traffic noise and other music; database over a million tracks",
+      "url": "https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"
+    }
+  ]
+}
