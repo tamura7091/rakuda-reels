@@ -1,0 +1,42 @@
+{
+  "topic": "How a microwave oven heats food (the electric field flips about 2.45 billion times a second, twisting water molecules until their friction becomes heat; ice can't turn so it barely heats; reflected waves make hot and cold spots, which is why the plate spins)",
+  "why": "Candidates: (1) How a microwave oven heats food: a machine almost every Japanese home uses daily, yet nearly nobody can say how it heats without fire. The answer is a vivid moving picture (water molecules twisted back and forth about 2.45 billion times a second until their friction becomes heat), and it pays off two everyday mysteries at once: why frozen food stays icy in spots, and why the plate spins (reflected waves overlap into hot and cold spots). (2) The Monty Hall problem: a famous puzzle that animates well with doors, but it has been explained endlessly and is abstract probability rather than a product mechanism. (3) How a touchscreen finds your finger: universal, but the answer is a static electrode grid with a weak 'wait, how?'. Pick: the microwave. It fits the channel learnings: a known product, the phenomenon itself moving in the first second (molecules spinning furiously inside the oven), and a hook with a shocking number that holds back why the spinning makes heat. Past reels (Suica, optical mouse, Face ID, JPEG, Starlink, etc.) never covered it.",
+  "voice": "Konoha",
+  "instruction": "家電の仕組みをテンポよく、映像で驚かせる解説に。冒頭はいきなり、電子レンジの中のごはん茶碗にカメラがぐっと寄り、その中で無数の水分子（赤い酸素に白い水素2つのくの字形）がものすごい速さで首を振っている画から。「1秒に約24億回」の数字をカウンター風に出す。次に電子レンジの断面図。奥のマグネトロンから波が出て、金属の壁でカンカンと跳ね返りながら庫内を飛び回る。続いて水分子を1個だけ大きく見せ、片側に「＋」、反対側に「−」の印。背景の電場の矢印が上下にパタパタ反転するたび、分子がそれに合わせてくるっと回る。ゆっくり再生から一気に高速に。隣の分子とこすれ合う場面で、全体が青からオレンジへ色づいて熱を表現する。氷の場面は、分子が格子状にがっちり並んで矢印が反転してもびくともせず、色も青いまま。最後は庫内を上から見た図で、跳ね返った波が重なり、熱い場所（オレンジの点）と冷たい場所（青い点）がまだら模様に並ぶ。そこにお皿が回り、食べ物が熱い点を順番に通過して全体がオレンジに染まって締める。暗いネイビーの背景に、熱を表すオレンジの1色のアクセント。",
+  "lines": [
+    "電子レンジの中で、水の分子は1秒に約24億回も向きを変えています。",
+    "火を使わずに温まる秘密は、この動きです。",
+    "奥のマグネトロンという部品が、電波を出します。",
+    "電波は金属の壁で跳ね返り、庫内を飛び回ります。",
+    "水の分子は、片側がプラス、反対側がマイナスです。",
+    "だから電波の向きに、そろおうとします。",
+    "ところが電波の向きは、1秒に約24億回も入れ替わります。",
+    "分子は右へ左へと、回され続けます。",
+    "隣の分子とこすれ合い、その摩擦が熱になるのです。",
+    "冷凍ごはんが温まりにくいのは、氷の分子が固まって回れないからです。",
+    "さらに、跳ね返った電波が重なると、強い場所と弱い場所ができます。",
+    "だからお皿が回って、食べ物を強い場所に順番に通しているのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "Microwave Ovens (U.S. Food and Drug Administration)",
+      "url": "https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens"
+    },
+    {
+      "title": "A device that causes water molecules to flip back and forth some 2.45 billion times a second (McGill University Office for Science and Society)",
+      "url": "https://www.mcgill.ca/oss/article/general/device-causes-water-molecules-flip-back-and-forth-some-245-billion-times-second-what-it"
+    },
+    {
+      "title": "Physics 2000 (University of Colorado): Microwave Ovens, Water Vapor and Ice",
+      "url": "https://physics.uwb.edu.pl/main/ptf/fizyka2000/microwaves/water_rotates5.html"
+    },
+    {
+      "title": "Hot spots in the microwave (TU Delft, Show the Physics)",
+      "url": "https://interactivetextbooks.tudelft.nl/showthephysics/demos/demo49/demo49.html"
+    }
+  ]
+}
