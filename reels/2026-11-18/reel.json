@@ -1,0 +1,48 @@
+{
+  "topic": "Why a Shinkansen entering a tunnel makes a boom at the far exit, and why the 500 Series got a 15 m kingfisher-inspired nose (the train pushes a pressure wave ahead at the speed of sound; how loud the exit boom is depends on how suddenly the air was pushed; a nose whose cross-section grows at a steady pace pushes gently)",
+  "why": "Candidates: (1) The Shinkansen tunnel boom and the kingfisher nose: a sound happens at a tunnel exit before the train even gets there, which is a strong 'wait, how?'. The answer is one moving picture: a wave of pushed air racing down the tube ahead of the train and bursting out of the exit. It ends on a famous nature-inspired design story every Japanese adult has half heard, and it is timely because the 500 Series is due to retire around 2027. (2) How a refrigerator makes cold from electricity (refrigerant evaporating and being compressed in a loop): universal, but the cycle has several abstract stages and a weaker first image. (3) How a touchscreen finds your finger: everyone uses one, but the answer is a static electrode grid with little motion. Pick: (1). It fits the channel learnings: a known product (the Shinkansen), the phenomenon itself moving in the first second (a train plunging into a tunnel, the far exit bursting), and a hook built on a strange result ('the exit booms before the train arrives') that holds back the cause. No past reel covered trains or tunnels.",
+  "voice": "Konoha",
+  "instruction": "乗り物の仕組みを、テンポよく驚きのある解説に。冒頭はいきなり、山のトンネルに新幹線が猛スピードで飛び込む横からの画。同時に画面奥、遠く離れた出口から空気の輪が「ドン」と破裂するように飛び出し、木々が揺れる。列車はまだトンネルの中。次にトンネルを透かした断面図にして、列車の先頭が空気の粒を押し込み、押された空気の帯（圧力の波）が列車より先に出口へ走っていく様子をアニメーションで。出口で波が外へ一気に広がる。続いて比較の場面：先が短く太い先頭だと波が切り立った鋭い山になり、出口で大きな破裂。そこからカワセミが空中から水面へ飛び込み、しぶきがほとんど上がらないスローモーション風の画。くちばしの先から頭へ、輪切りの断面が少しずつ大きくなる図を重ねる。最後に500系の長い先頭（約15m）の横顔に、同じように断面の輪切りが一定のペースで太くなる図を重ね、トンネル内の波がなだらかな丘に変わり、出口では静かに空気が抜けて締める。暗いネイビーの背景に、圧力の波を表すシアン1色のアクセント。",
+  "lines": [
+    "新幹線がトンネルに入ると、出口で「ドン」と爆音が鳴ります。",
+    "列車は、まだ出口に着いてもいないのにです。",
+    "列車は、トンネルの空気を押し込みます。",
+    "押された空気は圧力の波になり、音の速さで先に出口へ走ります。",
+    "そして出口から飛び出し、「ドン」と鳴るのです。",
+    "音の大きさは、空気をどれだけ急に押したかで決まります。",
+    "先の短い列車は一気に押すので、波が鋭くなります。",
+    "そこで注目されたのが、カワセミのくちばしです。",
+    "カワセミは水に飛び込んでも、ほとんどしぶきを上げません。",
+    "くちばしの先から頭へ、太さがなめらかに増えていくからです。",
+    "2027年ごろ引退予定の500系も、約15メートルの長い鼻を持ちます。",
+    "先端から客室まで、一定のペースで太くなる形です。",
+    "空気はゆっくり押され、波がなだらかになり、音も小さくなります。",
+    "あの長い鼻は、静けさのための形なのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "500系引退前に知りたい開発秘話 (トレたび, JRグループ協力; interview with the deputy director of the Kyoto Railway Museum)",
+      "url": "https://www.toretabi.jp/railway_info/jikoku2503.html"
+    },
+    {
+      "title": "How one engineer's birdwatching made Japan's bullet train better (Trellis / GreenBiz)",
+      "url": "https://trellis.net/article/how-one-engineers-birdwatching-made-japans-bullet-train-better"
+    },
+    {
+      "title": "Miyachi et al., Steepening of compression waves in Shinkansen tunnels: micro-pressure wave magnitude is roughly proportional to the maximum pressure gradient (Journal of Fluid Science and Technology, 2013)",
+      "url": "https://www.jstage.jst.go.jp/article/jfst/8/3/8_462/_article"
+    },
+    {
+      "title": "Optimization of train nose shapes to reduce micro-pressure waves radiating from tunnel portals (Quarterly Report of RTRI, vol. 64 no. 2)",
+      "url": "https://www.jstage.jst.go.jp/article/rtriqr/64/2/64_135/_article"
+    },
+    {
+      "title": "500系新幹線 (JR西日本 鉄道文化財)",
+      "url": "https://www.westjr.co.jp/railway-cultural-property/pages/00015.html"
+    }
+  ]
+}
