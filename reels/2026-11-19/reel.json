@@ -1,0 +1,33 @@
+{
+  "topic": "How a quartz watch counts one second (a tuning-fork-shaped quartz crystal bends when voltage is applied and rings 32,768 times a second; 32,768 is 2 to the 15th, so halving the count 15 times gives exactly one pulse a second that steps the second hand; Seiko's 1969 Quartz Astron was the first quartz wristwatch)",
+  "why": "Candidates: (1) How a quartz watch counts a second: inside every cheap watch and wall clock a tiny tuning fork of quartz rings 32,768 times a second, and that odd number is the trick: halve it 15 times and you land exactly on 1. The visual is perfect for motion: a vibrating fork, then a counter visibly halving 32768 → 16384 → … → 1 and the second hand ticking. It ends on a Japanese pride story (Seiko Astron, 1969). (2) The Monty Hall problem: a famous puzzle that always spreads, but it is pure probability with no object inside something we use, and it sparks arguments more than wonder. (3) The birthday paradox (23 people, 50%): visual, but abstract and widely covered. Pick: (1). It fits the channel learnings: a known everyday object, a mechanism nobody has seen, the phenomenon itself moving in the first second (the crystal fork vibrating inside an opened watch), and an algorithm-like visual (repeated halving) like the sort reel that did well. No past reel covered clocks or timekeeping.",
+  "voice": "Konoha",
+  "instruction": "身近なモノの仕組みを、テンポよく驚きのある解説に。冒頭はいきなり、腕時計の裏ぶたが外れて中がズームアップし、銀色の小さな円筒の中で音叉の形の水晶が残像が出るほど細かく震えている画。横に「32768回/秒」のカウンターが猛スピードで回る。次に水晶に電池から電気が流れ、音叉の両腕が曲がっては戻る様子をスローで。揺れの1回ごとに光のパルスが1つ生まれ、線を流れていく。山場は「半分にする」場面：大きな数字32768の光の粒の列が、段を1つ通るたびに半分の16384、8192、4096…と減っていき、15段目でちょうど1つの粒になる階段状の図。最後の1粒が小さなモーターに届くと秒針がカチッと1目盛り進む。続けて1969年のセイコー・クオーツアストロンのシルエットと「月差±5秒」の文字。全体は暗いネイビーの背景に、水晶の揺れとパルスを表すシアン1色のアクセント。",
+  "lines": [
+    "腕時計の中では、水晶が1秒に3万回以上も震えています。",
+    "しかも、その回数はわざと半端な数なのです。",
+    "中にあるのは、音叉の形に削った小さな水晶です。",
+    "水晶には、電気をかけると曲がる性質があります。",
+    "電池の電気で、音叉は1秒に3万2768回、規則正しく揺れます。",
+    "時計は、この揺れを電気のパルスとして数えます。",
+    "そして、その数を半分にしていきます。",
+    "3万2768、1万6384、8192、4096と、半分ずつです。",
+    "ちょうど15回半分にすると、1秒に1回になります。",
+    "3万2768は、2を15回かけた数なのです。",
+    "その1回ごとに小さなモーターが動き、秒針が1つ進みます。",
+    "人の耳には聞こえず、電池も長持ちする絶妙な速さです。",
+    "1969年、セイコーが世界初のクオーツ腕時計を発売しました。",
+    "ずれは、1か月でわずか5秒以内でした。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {"title": "Quartz clock (Wikipedia): tuning-fork resonator, 32,768 = 2^15, chain of 15 divide-by-2 flip-flops, inverse piezoelectric bending, Lavet stepping motor, frequency above human hearing", "url": "https://en.wikipedia.org/wiki/Quartz_clock"},
+    {"title": "The pursuit of accuracy for wristwatches (Seiko Museum Ginza): Quartz Astron 35SQ, 25 Dec 1969, ±0.2 s/day, ±5 s/month, 32,768 Hz later became the standard", "url": "https://museum.seiko.co.jp/en/knowledge/Quartz01/"},
+    {"title": "World's First Quartz Watch Astron (Seiko Museum Ginza collection)", "url": "https://museum.seiko.co.jp/en/collections/watch_latestage/collect020/"},
+    {"title": "Milestones: Electronic Quartz Wristwatch, 1969 (IEEE / ETHW)", "url": "https://ethw.org/Milestones:Electronic_Quartz_Wristwatch%2C_1969"},
+    {"title": "ST3215SB 32.768 kHz tuning-fork crystal unit datasheet (Kyocera)", "url": "https://ele.kyocera.com/sites/default/files/assets/static/discontinued/st3215sb_2019_j.pdf"}
+  ]
+}
