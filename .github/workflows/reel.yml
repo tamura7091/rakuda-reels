@@ -7,12 +7,14 @@
 #      plan, design, every section's visual built and reviewed by its director, captions, sound; then the mp4.
 #   C. Claude Code reviews the export as a creative director (prompts/review.md); weak sections are redone with the
 #      engine's `revise` (up to two rounds). Only a passing reel is posted (tools/post.mjs).
-# Starts 16:30 JST (a run takes one to three hours); a scheduled post waits for 20:00 JST. Run by hand: Actions → Daily reel → Run workflow (tick "publish"
-# to post; otherwise the reel is only made and kept as the run's artifact).
+# A scheduled run only makes the reel and stages it (the mp4 as a release asset, review.json committed): post.yml posts
+# it between 19:00 and 23:00 JST. GitHub starts this schedule 7 to 10 hours late, and posting at the end of the run
+# put every reel out at 1 to 3 AM JST (2026-11-06 to 11-16). Run by hand: Actions → Daily reel → Run workflow (tick
+# "publish" to post at once; otherwise the reel is only made and kept as the run's artifact).
 name: Daily reel
 on:
   schedule:
-    - cron: '30 7 * * *'
+    - cron: '30 19 * * *' # 04:30 JST: even 10 hours late it is made and staged before the evening post
   workflow_dispatch:
     inputs:
       publish:
@@ -116,9 +118,11 @@ jobs:
             n=$(node -e 'const r=require("./'"$dir"'/review.json");console.log((r.revise||[]).length)')
             [ "$n" = 0 ] && break
             for i in $(seq 0 $((n - 1))); do
-              node -e 'const r=require("./'"$dir"'/review.json").revise['"$i"'];require("fs").writeFileSync("'"$proj"'/revise.json",JSON.stringify({section:r.section,request:r.request,quick:!!r.quick}));console.log("revise",r.section,r.quick?"(quick)":"(rebuild)",r.request)'
+              node -e 'const r=require("./'"$dir"'/review.json").revise['"$i"'];require("fs").writeFileSync("'"$proj"'/revise.json",JSON.stringify({section:r.section,request:r.request,quick:!!r.quick,checked:true}));console.log("revise",r.section,r.quick?"(quick)":"(rebuild)",r.request)'
               rm -f "$proj/error.log"
               python3 rakuda/engine/pipeline.py revise "$proj"
+              # checked: nobody watches this run, so the engine looks at the tweak's frames until they show it (a blind
+              # quick tweak left the same flaw standing for three rounds, 2026-11-14 to 11-18)
               # revise records a failure in error.log and exits 0: show it (the next review sees the section unchanged)
               if [ -f "$proj/error.log" ]; then echo "::warning::revise of a section failed"; tail -5 "$proj/error.log"; fi
             done
@@ -130,16 +134,12 @@ jobs:
           done
           node tools/timing.mjs "$proj" "after review"
           echo "Not good enough to post today."; exit 1
-      - name: Post to Instagram
+      - name: Stage it for the evening post (or post now, when run by hand with "publish")
         id: post
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           GH_TOKEN: ${{ github.token }} # the mp4 goes up as a release asset that Instagram fetches
-        run: |
-          if [ "${{ github.event_name }}" = schedule ]; then
-            wait=$(( $(date -u -d 'today 11:00' +%s) - $(date -u +%s) )); [ "$wait" -gt 0 ] && sleep "$wait"
-          fi
-          node tools/post.mjs ${{ steps.script.outputs.dir }} ${{ (github.event_name == 'schedule' || inputs.publish) && '--publish' || '' }}
+        run: node tools/post.mjs ${{ steps.script.outputs.dir }} ${{ inputs.publish && '--publish' || (github.event_name == 'schedule' && '--stage' || '') }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -163,7 +163,7 @@ jobs:
           git pull --rebase -q && git push -q
       # A reel that passed review must be on Instagram: if posting (or its comment) failed, say so where Naoki sees it
       - name: Alert when a passed reel was not posted
-        if: failure() && steps.review.outcome == 'success' && (github.event_name == 'schedule' || inputs.publish)
+        if: failure() && steps.review.outcome == 'success' && inputs.publish
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

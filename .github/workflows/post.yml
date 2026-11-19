@@ -1,0 +1,53 @@
+# Posts the reel that reel.yml made and staged, in the evening in Japan. It runs every hour because GitHub starts
+# schedules hours late; a run outside 19:00 to 22:59 JST, or with nothing staged, does nothing.
+name: Post reel
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+    inputs:
+      now:
+        description: Post the staged reel now, whatever the time
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  issues: write
+concurrency: post
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Is it evening in Japan?
+        id: time
+        run: |
+          h=$(TZ=Asia/Tokyo date +%-H)
+          if [ "${{ inputs.now }}" = true ] || { [ "$h" -ge 19 ] && [ "$h" -le 22 ]; }; then echo "go=1" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.time.outputs.go
+      - name: Post the staged reel
+        id: post
+        if: steps.time.outputs.go
+        run: |
+          dir=$(node tools/post.mjs --ready)
+          [ -z "$dir" ] && { echo "Nothing staged."; exit 0; }
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          node tools/post.mjs "$dir" --publish
+      - name: Keep the history
+        if: always() && steps.post.outputs.dir
+        run: |
+          git config user.name "rakuda-reels"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add history.json
+          git diff --cached --quiet && exit 0
+          git commit -qm "posted ${{ steps.post.outputs.dir }}"
+          git pull --rebase -q && git push -q
+      - name: Alert when a staged reel was not posted
+        if: failure() && steps.post.outputs.dir
+        run: |
+          gh issue create --title "Reel ${{ steps.post.outputs.dir }} passed review but was not posted" --body "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          The post step failed (see its log). If the reel is on Instagram and only the comment failed: node tools/post.mjs --comment <media_id>, and add its row to history.json so it is not posted twice. Otherwise run Post reel by hand with \"now\" ticked."

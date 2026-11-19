@@ -32,8 +32,12 @@ You are the last check, as a demanding creative director. Nobody else will look 
   and keeps everything else in it. `quick: false` only when the visual itself is wrong or broken (shows the wrong
   thing, an empty or grey stage, a placeholder): it is planned and built again from scratch, which is slow and can
   bring new flaws. Prefer quick whenever it can fix the problem.
-- In round 2 and 3, check first that every earlier request was actually fixed; one that was not is asked again, as a
-  quick tweak of what is there now, saying exactly what is still wrong.
+- Every request is checked by the engine: its director looks at the section's frames after the change and has it
+  fixed until they show it. So write each request so it can be seen in a still frame: what must be visible, where
+  on the 1080×1920 frame, and at which second.
+- In round 2 and 3, check first that every earlier request was actually fixed. One that was not is asked again,
+  saying exactly what the frames show now. If the same thing was already asked twice and is still wrong, the
+  component cannot be patched: ask for it with `quick: false`.
 - You may also improve `caption.txt`.
 
 Do not run the engine, commit or post.

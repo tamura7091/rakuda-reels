@@ -3,7 +3,7 @@
 A daily Japanese explainer reel for the **@rakuda.studio** Instagram, made by the real Rakuda engine and posted with
 nobody's computer on.
 
-Every day at 16:30 JST a GitHub Action ([.github/workflows/reel.yml](.github/workflows/reel.yml)) runs on Naoki's
+Every day a GitHub Action ([.github/workflows/reel.yml](.github/workflows/reel.yml)) runs on Naoki's
 Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no model API keys:
 
 1. **Topic and script**: Claude Code researches what is interesting and going viral in explainer shorts, picks a topic
@@ -19,9 +19,14 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
 3. **Review**: Claude Code reviews the export as a creative director against Rakuda's `QUALITY` bar and pre-post review
    ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
    small flaw is a `quick` revise (the component edited in place, minutes); only a wrong or broken visual is planned
-   and built again. A reel that does not pass is not posted (the run fails and GitHub mails the owner).
-4. **Post**: at 20:00 JST, [tools/post.mjs](tools/post.mjs) checks every file, puts the mp4 up as a release asset
-   of this repo and has Instagram fetch it by URL (`video_url`; the resumable upload kept stalling), publishes it
+   and built again. Every revise is `checked`: the engine's director looks at the section's frames after the change
+   and has it fixed until they show it (unchecked quick tweaks left the same flaw standing for three rounds and
+   failed 6 of 10 runs, 2026-11-09 to 11-18). A reel that does not pass is not posted (the run fails and GitHub mails the owner).
+4. **Post**: the run stages a passing reel (`post.mjs --stage`: the mp4 as a release asset of this repo), and
+   [post.yml](.github/workflows/post.yml), which runs hourly, posts the newest staged reel between 19:00 and 23:00 JST.
+   Making and posting are apart because GitHub starts the daily schedule 7 to 10 hours late: posting at the end of
+   the run put the first six reels out at 1 to 3 AM JST. [tools/post.mjs](tools/post.mjs) checks every file and has
+   Instagram fetch the mp4 by URL (`video_url`; the resumable upload kept stalling), publishes it
    (retried once), records it in history.json and comments
    「エディターのリンクが欲しい方は「Rakuda」とコメントしてね。DMでお送りします。」 under it (the API cannot pin a
    comment; pin it in the app if wanted). A reel that passed review but was not posted fails the run and opens a

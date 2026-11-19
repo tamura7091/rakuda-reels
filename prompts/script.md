@@ -44,10 +44,17 @@ script. Follow it exactly, as that model, with the channel learnings above. On t
 - **The hook (line 1, at most 2 lines, said in under 3 seconds) builds curiosity**: promise the surprising result,
   hold back the answer. Name the concrete thing the editor can show moving at once (a map, a particle, an earbud),
   never an abstraction. Line 1 never gives away the key trick.
+  Open on something the viewer has seen with their own eyes that should not be possible, then ask why
+  (「信号も事故もない円の道で、渋滞が勝手に生まれました。」, 「破れたQRコードでも、スマホは一瞬で読み取ります。」: viewers
+  watched about 60% of these two). Never open on a statistic about an unseen mechanism: 「水の分子は1秒に約24億回も
+  向きを変えています。」 already is the answer, and viewers left after 20% (our reels, 2026-11).
 - Then straight into the steps, in order, in plain precise words a tired adult follows with no school maths: ideas,
   not derivations; one familiar example per step; each line something the editor can show happening.
-- Natural spoken Japanese, です/ます, calm explainer register. 12-20 lines, one sentence or phrase per line, each
-  ending in 、 or 。. About 35-60 seconds read aloud (~7 characters a second). No em dashes.
+- Natural spoken Japanese, です/ます, calm explainer register. One sentence or phrase per line, each ending in 、 or 。.
+  **At most 320 characters in all, the four ending lines included** (10-15 lines): the voice reads about 5 characters
+  a second, so that is a reel of about 60 seconds. Scripts of 400 characters came out at 72-82 seconds and most
+  viewers left before half. One idea, three or four steps; cut the step the story can live without. Count the
+  characters before you finish. No em dashes.
 - The script ends with exactly these four lines (the comment CTA: anyone who comments 「Rakuda」 gets the link by DM
   from our comment bot, so the keyword must be said and shown exactly):
   「この動画は全て、」
