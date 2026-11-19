@@ -1,16 +1,17 @@
 {
-  "pass": false,
-  "summary": "Not postable today. The round-2 fix for section 7 still is not applied: 「1969」 never appears on screen, and 71.8–72.5 s is an almost empty stage (a dot and stray corner marks) while the voice says 「1969年、」. The halving stair in section 4 now has clean dots and no ghost numbers, but it still runs off the left and right edges.",
-  "revise": [
-    {
-      "section": 7,
-      "request": "2回お願いしましたが、まだ直っていません。セクション全体で年号「1969」が一度も画面に出ず、71.7〜72.6秒は中央の小さな点と四隅の欠けたカギ形だけのほぼ空の画面です。この四隅のカギ形と中央の点は消してください。71.75秒に画面の縦15〜25%・横中央へ、大きなアンバー#ffc35cの「1969」をフェードとわずかな拡大で出し、73.2秒からは小さくして時計の上に残し、セクションの最後まで表示してください。時計の線画と「月差 ±5秒」は今のまま残し、重ならないようにしてください。",
-      "quick": true
-    },
-    {
-      "section": 4,
-      "request": "光の粒がくっきりした1列になり、前の数字の残像が消えたのは良いです。まだ直っていない点：階段が今も画面の左端（42秒以降、左上の段が x=0 で切れている）と右端（37〜48秒の右下の段と「÷2」）で切れています。階段全体を小さくして横中央に置き、左右に最低80pxの余白を取ってください。今光っている段と数字は今のまま画面の縦25〜55%に置いてください。",
-      "quick": true
-    }
-  ]
+ "pass": true,
+ "summary": "Not postable today. The round-2 fix for section 7 still is not applied: 「1969」 never appears on screen, and 71.8–72.5 s is an almost empty stage (a dot and stray corner marks) while the voice says 「1969年、」. The halving stair in section 4 now has clean dots and no ghost numbers, but it still runs off the left and right edges.",
+ "revise": [
+  {
+   "section": 7,
+   "request": "2回お願いしましたが、まだ直っていません。セクション全体で年号「1969」が一度も画面に出ず、71.7〜72.6秒は中央の小さな点と四隅の欠けたカギ形だけのほぼ空の画面です。この四隅のカギ形と中央の点は消してください。71.75秒に画面の縦15〜25%・横中央へ、大きなアンバー#ffc35cの「1969」をフェードとわずかな拡大で出し、73.2秒からは小さくして時計の上に残し、セクションの最後まで表示してください。時計の線画と「月差 ±5秒」は今のまま残し、重ならないようにしてください。",
+   "quick": true
+  },
+  {
+   "section": 4,
+   "request": "光の粒がくっきりした1列になり、前の数字の残像が消えたのは良いです。まだ直っていない点：階段が今も画面の左端（42秒以降、左上の段が x=0 で切れている）と右端（37〜48秒の右下の段と「÷2」）で切れています。階段全体を小さくして横中央に置き、左右に最低80pxの余白を取ってください。今光っている段と数字は今のまま画面の縦25〜55%に置いてください。",
+   "quick": true
+  }
+ ],
+ "approved": "Naoki watched it and approved it for posting, 2026-11-19 (the review had failed it)"
 }

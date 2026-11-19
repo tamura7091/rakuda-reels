@@ -7,7 +7,8 @@
 //   node tools/post.mjs reels/<slug> --stage      … and put reel.mp4 up as the release asset, for a later --publish
 //   node tools/post.mjs reels/<slug> --publish    … and publish reel.mp4 with caption.txt, comment, record it in history.json
 //                                                 (without a local reel.mp4: the staged release asset is what is posted)
-//   node tools/post.mjs --ready                   prints the newest reel that passed review, is staged and is not posted yet
+//   node tools/post.mjs --ready                   prints the oldest reel that passed review (or that Naoki approved), is
+//                                                 staged and is not posted yet; nothing once a reel was posted today
 //   node tools/post.mjs --comment <media_id>      only the comment, under an already posted reel
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,10 +29,13 @@ const staged = (slug) => { // the mp4 held by the reel's release, or null
   catch { return undefined; } // no release yet
 };
 
-if (args[0] === '--ready') { // a reel made in the last 3 days: an older one is stale, and is left for a person
-  const posted = new Set(JSON.parse(fs.readFileSync(path.join(root, 'history.json'), 'utf8')).map((r) => r.slug));
-  const since = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
-  const slug = fs.readdirSync(path.join(root, 'reels')).sort().reverse().find((s) => {
+if (args[0] === '--ready') { // the queue, oldest first, one reel a day; a reel older than 14 days is left for a person
+  const history = JSON.parse(fs.readFileSync(path.join(root, 'history.json'), 'utf8'));
+  const posted = new Set(history.map((r) => r.slug));
+  const day = (t) => new Date(t + 9 * 36e5).toISOString().slice(0, 10); // the date in Japan
+  if (!args.includes('--queue') && history.some((r) => r.posted && day(Date.parse(r.posted)) === day(Date.now()))) process.exit(0);
+  const since = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
+  const slug = fs.readdirSync(path.join(root, 'reels')).sort().find((s) => {
     if (s.slice(0, 10) < since || posted.has(s)) return false;
     try { return JSON.parse(fs.readFileSync(path.join(root, 'reels', s, 'review.json'), 'utf8')).pass === true && !!staged(s); } catch { return false; }
   });
@@ -106,7 +110,7 @@ console.log(`published ${permalink}`);
 
 const histFile = path.join(root, 'history.json');
 const history = JSON.parse(fs.readFileSync(histFile, 'utf8'));
-const row = { date: new Date().toISOString().slice(0, 10), slug: path.basename(dir), title: reel.title, topic: reel.topic, media_id: id, permalink };
+const row = { date: new Date().toISOString().slice(0, 10), posted: new Date().toISOString(), slug: path.basename(dir), title: reel.title, topic: reel.topic, media_id: id, permalink };
 history.push(row);
 fs.writeFileSync(histFile, JSON.stringify(history, null, 1) + '\n');
 

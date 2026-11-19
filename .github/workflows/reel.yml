@@ -36,7 +36,22 @@ env:
   RAKUDA_RUN_BUDGET_USD: '1000'
   RAKUDA_MONTH_BUDGET_USD: '100000'
 jobs:
+  # A scheduled run makes nothing while a staged reel still waits to be posted (the queue is posted first, one a night)
+  queue:
+    runs-on: ubuntu-latest
+    outputs:
+      waiting: ${{ steps.q.outputs.waiting }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: q
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ "${{ github.event_name }}" = schedule ] && echo "waiting=$(node tools/post.mjs --ready --queue)" >> "$GITHUB_OUTPUT"
+          exit 0
   reel:
+    needs: queue
+    if: needs.queue.outputs.waiting == ''
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:

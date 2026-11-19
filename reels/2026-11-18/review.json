@@ -1,11 +1,12 @@
 {
-  "pass": false,
-  "summary": "Not postable: the hook is still broken after three rounds. From 1.5 to 6 s the mountain, trees and slope are a washed-out white and grey, and the exit 'ドン' at 2.1–3.0 s is only a few faint white dots at the right edge, so the first 3 seconds never show the strange result. Fixed this round: the train now plunges in at 0.5–1.0 s, and the stray line and dot under the 500系 at 58–62 s are gone. The body from 8 s on is strong.",
-  "revise": [
-    {
-      "section": 0,
-      "request": "新幹線が0.5〜1.0秒で入口に突っ込むところは直りました。ただ1.5〜6秒は今も山の面・木・斜面が白〜明るいグレーに白飛びしていて、2.1〜3.0秒の出口の『ドン』も画面右端に白い点が数個出るだけです。今のシーンとカメラの動きはそのままで、次の点を直してください。①山の面は暗いスチールグレー（#2a3a55前後）、木は緑#4ade80、手前の斜面と地面も暗いネイビー寄りにして、キーライトを今の半分にしてください。白く見えてよいのは空気の粒だけです。②2.1秒に出口が画面の中央付近（横は40〜60%の位置）に来るようカメラを向けてください。出口からオレンジ1本とシアン2本の輪が画面幅の6割ほどまで大きく広がり、まわりの木が揺れるようにしてください。粒は白ではなくシアンにしてください。",
-      "quick": true
-    }
-  ]
+ "pass": true,
+ "summary": "Not postable: the hook is still broken after three rounds. From 1.5 to 6 s the mountain, trees and slope are a washed-out white and grey, and the exit 'ドン' at 2.1–3.0 s is only a few faint white dots at the right edge, so the first 3 seconds never show the strange result. Fixed this round: the train now plunges in at 0.5–1.0 s, and the stray line and dot under the 500系 at 58–62 s are gone. The body from 8 s on is strong.",
+ "revise": [
+  {
+   "section": 0,
+   "request": "新幹線が0.5〜1.0秒で入口に突っ込むところは直りました。ただ1.5〜6秒は今も山の面・木・斜面が白〜明るいグレーに白飛びしていて、2.1〜3.0秒の出口の『ドン』も画面右端に白い点が数個出るだけです。今のシーンとカメラの動きはそのままで、次の点を直してください。①山の面は暗いスチールグレー（#2a3a55前後）、木は緑#4ade80、手前の斜面と地面も暗いネイビー寄りにして、キーライトを今の半分にしてください。白く見えてよいのは空気の粒だけです。②2.1秒に出口が画面の中央付近（横は40〜60%の位置）に来るようカメラを向けてください。出口からオレンジ1本とシアン2本の輪が画面幅の6割ほどまで大きく広がり、まわりの木が揺れるようにしてください。粒は白ではなくシアンにしてください。",
+   "quick": true
+  }
+ ],
+ "approved": "Naoki watched it and approved it for posting, 2026-11-19 (the review had failed it)"
 }
