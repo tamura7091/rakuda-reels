@@ -16,8 +16,11 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    Every export's frames are rendered on 12 runners at once ([render.yml](.github/workflows/render.yml) started by
    [tools/render.sh](tools/render.sh)); a runner has no GPU and alone renders heavy scenes at about 1.5 frames/s,
    which made one export take 30 to 60 minutes. `export` then only encodes.
-3. **Review**: Claude Code reviews the export as a creative director against Rakuda's `QUALITY` bar and pre-post review
-   ([prompts/review.md](prompts/review.md)); weak sections are redone with `pipeline.py revise`, up to two rounds. A
+3. **Review**: Claude Code checks the export for blockers only ([prompts/review.md](prompts/review.md)): an empty
+   stage for 4 s or more, unreadable or garbage text, a wrong fact, broken captions, the Rakuda ending missing, a bad
+   file. Polish is the engine director's job, not this check's: the first version judged the reel as a creative
+   director and failed 6 of 10, and Naoki approved all six it failed when he watched them (2026-11-19). A blocked
+   section is redone with `pipeline.py revise` once and checked again. A
    small flaw is a `quick` revise (the component edited in place, minutes); only a wrong or broken visual is planned
    and built again. Every revise is `checked`: the engine's director looks at the section's frames after the change
    and has it fixed until they show it (unchecked quick tweaks left the same flaw standing for three rounds and
