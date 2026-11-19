@@ -1,0 +1,16 @@
+{
+  "pass": false,
+  "summary": "Not postable today. Fixed since last round: the hook, the 100°C plateau, the 「100°C超え」 label and the contact opening at 39.5 s. The magnet now drops at about 33.2 s, on the line. But the under-pot shot is still a white blown-out band with unreadable, half-hidden labels and no attraction lines. The 41–45.5 s exterior is still a flat grey wall instead of the cooker from the opening. Both were asked twice and need a rebuild, not another patch.",
+  "revise": [
+    {
+      "section": 3,
+      "request": "3回目の依頼です。部分修正では直らないので、作り直してください。今の画面では、26〜36.6秒の上部（縦0〜420px）の鍋底が白く飛んだ帯のままです。「磁石」のラベルと温度計の「100°C」は、その白の上に薄く重なって読めません（31秒の左上x≈60〜140、y≈340）。吸着の線は一度も出ず、黄色い線は左端（x=0）で切れたままです。作り直しでは次のようにしてください。鍋底はメタルグレー#8e9bb3の板として、画面上部（縦250〜420px）に収めます。その下に金属の板、磁石、ばねを画面中央（横340〜740px、縦420〜1100px）に置きます。「磁石」「金属の板」のラベルは、紺の背景の上に白文字で、画面内の左側（x=120〜320）に置いてください。30.1〜33.0秒は、磁石と板のすき間に太さ6pxの白い吸着の線を5本見せます。33.0秒でその線をふっと消し、33.2〜34.0秒で磁石を80px下へ離して、36.6秒まで離したままにしてください。電流の線は、太さ6pxの#ffe27aの実線で、画面の中に収めてください。",
+      "quick": false
+    },
+    {
+      "section": 4,
+      "request": "3回目の依頼です。部分修正では直らないので、41.2〜45.5秒の外観カットを作り直してください（39.6秒に接点が開く部分は直っているので、そのまま残してください）。今の画面は、上が白く飛んで切れた灰色の胴体のアップです。パネルは小さく下寄り（縦480〜760px）にあり、炊飯器に見えません。冒頭の0.1秒と同じく、ふたと湯気まで入った炊飯器の全体を、白飛びなしの斜め前から見せてください。炊飯器は画面中央（縦500〜1300px）に置きます。前面パネルとレバーは縦1000〜1250px付近に置き、41.6秒にレバーがカチッと上がり、オレンジのランプが灰色に消えるところが、静止画ではっきり分かるようにしてください。",
+      "quick": false
+    }
+  ]
+}

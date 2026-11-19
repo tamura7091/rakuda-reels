@@ -1,0 +1,40 @@
+{
+  "topic": "How a switch-type rice cooker knows the rice is done with no timer (boiling water cannot pass 100°C; once the rice has absorbed the water the pot bottom climbs above 100°C, and a magnet built to lose its pull just above 100°C (its Curie point) lets go, so a spring snaps the switch off)",
+  "why": "Candidates: (1) How a rice cooker knows the rice is done: every Japanese adult has heard that click thousands of times and never asked how a box with no eyes and no timer knows. The answer is one beautiful, visual trick (water pins the pot at 100°C like a lid on the temperature; when the water is gone the temperature escapes and a heat-sensitive magnet lets go), and it lands as a 'so that's it' to tell at dinner. (2) How UNIQLO's self-checkout reads every item in the basket at once (RFID): very Japanese and viral, but too close to our Suica reel (radio power to a chip with no battery). (3) The Monty Hall problem: famous and arguable, but abstract probability with no object inside something we use. Pick (1): a known everyday product, a mechanism nobody has seen, the phenomenon moving in the first second (the switch lever popping up by itself next to steaming rice), and a cutaway with a thermometer needle, a magnet and a spring that animates cleanly. No past reel covered kitchen appliances apart from the microwave, whose mechanism is unrelated.",
+  "voice": "Konoha",
+  "instruction": "家電の仕組みを、テンポよく驚きのある解説に。冒頭はいきなり、湯気の立つ昔ながらのスイッチ式炊飯器のアップ。誰も触れていないのに、前面のスイッチレバーがカチッと勝手に跳ね上がる画から始める（音のタイミングも合わせる）。次に炊飯器を断面図に切り替え、内釜の中で水がぐつぐつ沸騰し、横に温度計を表示。火力の矢印を増やしても温度計の針は100度でぴたりと止まり、熱の矢印が湯気になって上へ逃げていく様子を見せる。お米の粒が水を吸ってふくらみ、水面が下がって消えると、温度計の針が100度を超えて上がりはじめる。最後は鍋の真下を大きくズーム。磁石が金属の板にくっついてレバーを押さえ、下にはばね。温度が100度を少し超えた瞬間、磁石の吸着を示す線がふっと消え、ばねがレバーを弾いて、電気の流れ（光る線）が途切れる。締めは冒頭と同じレバーが跳ね上がるカットに戻る。暗いネイビーの背景に、熱を表す暖かいオレンジの1色のアクセント。",
+  "lines": [
+    "炊飯器は、炊けた瞬間にスイッチが勝手に切れます。",
+    "中ものぞいていないのに、なぜでしょう。",
+    "鍵は、水の温度です。",
+    "水は沸騰している間、100度より熱くなりません。",
+    "加えた熱は、水を蒸発させることに使われるからです。",
+    "ところが、お米が水を吸いきると、鍋底は100度を超えはじめます。",
+    "それを見張るのが、鍋の真下にある磁石です。",
+    "この特別な磁石は、100度を少し超えると、くっつく力を失います。",
+    "離れたレバーがばねで戻り、カチッと電気が切れます。",
+    "炊飯器は、水が消えた合図で止まっていたのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "5 Mechanically Extraordinary Everyday Objects (ASME): the rice cooker's temperature-sensitive magnet and Curie point",
+      "url": "https://www.asme.org/Topics-Resources/Content/5-Mechanically-Extraordinary-Everyday-Objects"
+    },
+    {
+      "title": "Rice cooker (Wikipedia): thermostat trips when the absorbed water lets the bowl rise above boiling point",
+      "url": "https://en.wikipedia.org/wiki/Rice_cooker"
+    },
+    {
+      "title": "Curie temperature (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Curie_temperature"
+    },
+    {
+      "title": "Automatic electric rice cooker, 1955 (Toshiba Science Museum)",
+      "url": "https://toshiba-mirai-kagakukan.jp/a-guide/en/history-zone/ichigoki/cooker.htm"
+    }
+  ]
+}
