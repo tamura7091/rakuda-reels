@@ -26,7 +26,9 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    and has it fixed until they show it (unchecked quick tweaks left the same flaw standing for three rounds and
    failed 6 of 10 runs, 2026-11-09 to 11-18). A reel that does not pass is not posted (the run fails and GitHub mails the owner).
 4. **Post**: the run stages a passing reel (`post.mjs --stage`: the mp4 as a release asset of this repo), and
-   [post.yml](.github/workflows/post.yml), which runs hourly, posts the oldest staged reel between 19:00 and 23:00 JST, one a day. While a staged reel waits, the scheduled run
+   [post.yml](.github/workflows/post.yml) posts the oldest staged reel between 19:00 and 23:00 JST, one a day.
+   GitHub starts its half-hourly schedule only a few times a day, so a run that starts from 13:30 JST on waits for
+   19:00 JST and posts then. While a staged reel waits, the scheduled run
    makes no new one. A reel the review failed can be queued by hand: set `"pass": true` in its `review.json` (say who
    approved it), commit, and `node tools/post.mjs reels/<slug> --stage`.
    Making and posting are apart because GitHub starts the daily schedule 7 to 10 hours late: posting at the end of

@@ -1,9 +1,11 @@
-# Posts the reel that reel.yml made and staged, in the evening in Japan. It runs every hour because GitHub starts
-# schedules hours late; a run outside 19:00 to 22:59 JST, or with nothing staged, does nothing.
+# Posts the reel that reel.yml made and staged, in the evening in Japan. GitHub does not keep this schedule: of the
+# hourly runs asked for, it started five in two days (2026-11-19 and 11-20), none of them in the evening, and nothing
+# was posted. So a run that starts from 13:30 JST on waits for 19:00 JST and then posts; one from 19:00 to 22:59
+# posts at once; any other, or one with nothing staged, does nothing.
 name: Post reel
 on:
   schedule:
-    - cron: '7 * * * *'
+    - cron: '7,37 * * * *'
   workflow_dispatch:
     inputs:
       now:
@@ -17,7 +19,7 @@ concurrency: post
 jobs:
   post:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 360 # the wait for 19:00 JST is at most 5.5 hours
     env:
       IG_TOKEN: ${{ secrets.IG_TOKEN }}
       GH_TOKEN: ${{ github.token }}
@@ -25,8 +27,13 @@ jobs:
       - name: Is it evening in Japan?
         id: time
         run: |
-          h=$(TZ=Asia/Tokyo date +%-H)
-          if [ "${{ inputs.now }}" = true ] || { [ "$h" -ge 19 ] && [ "$h" -le 22 ]; }; then echo "go=1" >> "$GITHUB_OUTPUT"; fi
+          m=$(( 10#$(TZ=Asia/Tokyo date +%H) * 60 + 10#$(TZ=Asia/Tokyo date +%M) )) # minutes into the day in Japan
+          if [ "${{ inputs.now }}" = true ]; then echo "go=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$m" -ge 810 ] && [ "$m" -lt 1380 ]; then
+            echo "go=1" >> "$GITHUB_OUTPUT"
+            [ "$m" -lt 1140 ] && echo "wait=$(( (1140 - m) * 60 ))" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
       - uses: actions/checkout@v4
         if: steps.time.outputs.go
       - name: Post the staged reel
@@ -35,6 +42,11 @@ jobs:
         run: |
           dir=$(node tools/post.mjs --ready)
           [ -z "$dir" ] && { echo "Nothing staged."; exit 0; }
+          if [ -n "${{ steps.time.outputs.wait }}" ]; then
+            echo "Waiting ${{ steps.time.outputs.wait }} s for 19:00 JST."; sleep "${{ steps.time.outputs.wait }}"
+            git pull -q --rebase; dir=$(node tools/post.mjs --ready) # it may have been posted by hand meanwhile
+            [ -z "$dir" ] && { echo "Already posted."; exit 0; }
+          fi
           echo "dir=$dir" >> "$GITHUB_OUTPUT"
           node tools/post.mjs "$dir" --publish
       - name: Keep the history
