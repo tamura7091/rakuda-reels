@@ -13,8 +13,8 @@ Claude plan (Claude Code, `CLAUDE_CODE_OAUTH_TOKEN`); no Rakuda credits and no m
    voice, exactly as 「AIに全部おまかせ」 does ([tools/project.mjs](tools/project.mjs)), then `pipeline.py hear` (plan,
    design, every section's visual built and reviewed by its director, captions, sound) and `export`.
    Every reel has BGM: project.json turns on the engine's BGM plugin (one instrumental from Openverse, CC0 or CC BY,
-   ducked under the voice) with `bgm_db: -6`, 6 dB under Rakuda's usual bed so it never competes with the words
-   (added 2026-11-24 for low impressions). A CC BY track's credit is added to the caption ([tools/credit.mjs](tools/credit.mjs)). The engine's
+   ducked under the voice) at Rakuda's usual level, which Naoki chose over 6 dB quieter (added 2026-11-24 for low
+   impressions; `bgm_db` in project.json moves it). A CC BY track's credit is added to the caption ([tools/credit.mjs](tools/credit.mjs)). The engine's
    local "Claude Code" mode sends every model call to the claude CLI.
    Every export's frames are rendered on 12 runners at once ([render.yml](.github/workflows/render.yml) started by
    [tools/render.sh](tools/render.sh)); a runner has no GPU and alone renders heavy scenes at about 1.5 frames/s,
