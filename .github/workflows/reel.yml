@@ -150,6 +150,8 @@ jobs:
           done
           node tools/timing.mjs "$proj" "after review"
           echo "Not good enough to post today."; exit 1
+      - name: Credit the BGM in the caption (CC BY asks for it)
+        run: node tools/credit.mjs ${{ steps.script.outputs.dir }} ${{ steps.edit.outputs.proj }}
       - name: Stage it for the evening post (or post now, when run by hand with "publish")
         id: post
         env:

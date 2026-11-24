@@ -42,6 +42,9 @@ fs.writeFileSync(path.join(dir, 'voice-timing.json'), JSON.stringify(timing));
 fs.writeFileSync(path.join(dir, 'project.json'), JSON.stringify({
   id, created: new Date().toISOString(), source: 'recording.mp3', lang: 'ja', channel: CHANNEL,
   script, asis: true, polished: true, voice, confirmed: true, instruction: reel.instruction ?? '',
+  // BGM: the engine's BGM plugin picks one instrumental track (Openverse CC0 / CC BY) and ducks it under the voice;
+  // bgm_db -6 keeps it 6 dB under Rakuda's usual bed, so it fills the silence without pulling the ear off the words
+  plugins: { bgm: true }, bgm_db: -6,
 }, null, 2));
 const seconds = Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path.join(dir, 'recording.mp3')]).toString());
 fs.writeFileSync(path.join(reelDir, 'project'), id + '\n');

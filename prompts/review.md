@@ -22,6 +22,8 @@ anything wrong passes.
    - **The ending**: the last lines and `caption.txt` do not ask viewers to comment 「Rakuda」, spelled exactly so.
    - **The file**: no sound, not 1080×1920, or shorter than the voice.
 
+   Quiet background music under the voice is expected (every reel has it) and is never a blocker.
+
    None of these fail a reel (Naoki approved reels with each of them): a label or year named in the brief that
    never appears, something running a little past the frame edge, two labels overlapping for a couple of seconds, a
    bright or washed-out scene that can still be made out, a stray thin line or dot, a few quiet seconds with little
