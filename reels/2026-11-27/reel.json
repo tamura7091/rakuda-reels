@@ -1,0 +1,43 @@
+{
+  "topic": "How Japan's earthquake early warning makes your phone ring seconds before the shaking arrives (quakes send a fast weak P wave at about 7 km/s and a slow strong S wave at about 4 km/s; seismographs near the epicenter catch the P wave, JMA computes the source and strength at once, and the alert travels as an electric signal at nearly light speed, outrunning the S wave)",
+  "why": "Candidates: (1) Earthquake early warning (緊急地震速報): nearly every Japanese adult has heard their phone shriek and then felt the shaking a few seconds later. That moment seems impossible, as if the phone could see the future, and the answer is one clean race: a slow strong wave and a fast weak wave spreading on a map, and an alert running ahead of both at light speed. The phenomenon moves from frame one (ripples spreading from an epicenter across Japan, a phone lighting up before the ripple reaches it), it is famous, it matters to every viewer, and it is evergreen. (2) Smartphone night mode, which stacks many noisy dark frames into one clean bright photo: very visual, but less personal and less of a gasp. (3) Why a capacitive touchscreen ignores gloves: everyone has seen it, but the answer (a grid sensing charge) is slow to show and has less payoff. Pick (1): the strongest 'wait, how?' for a Japanese adult on the train, a known system nobody has seen inside, and a map race that animates beautifully. No past reel covered earthquakes; the closest, the GPS and Shinkansen tunnel reels, explain unrelated mechanisms.",
+  "voice": "Konoha",
+  "instruction": "防災テックの仕組みを、テンポよく驚きのある解説に。冒頭はいきなり、机の上のスマホが「緊急地震速報」の画面で光って震える画から。そのすぐ後ろの棚のコップはまだ静かで、数秒遅れてカタカタ揺れはじめる（警報が先、揺れが後の順番をはっきり見せる）。次に日本列島の地図を俯瞰で表示し、海の震源から2つの円い波が広がる。速くて淡い水色の輪がP波（秒速約7km）、遅くて太いオレンジの輪がS波（秒速約4km）で、2つの輪の間がどんどん開いていく様子を動きで見せる。震源近くの地震計の点がP波に触れて点滅し、そこから気象庁のコンピュータへ光る線が一瞬で走る。コンピュータから各地の街へ光の線が一気に広がり、街のスマホが次々に光る。そのあとからオレンジのS波の輪が街に届く。締めは、光の線がS波の輪を追い越して先回りしている全体図。暗いネイビーの背景に、揺れを表すオレンジの1色のアクセント（P波と信号は淡い色で控えめに）。",
+  "lines": [
+    "グラッと揺れる数秒前に、スマホの警報が鳴りだします。",
+    "まだ揺れていないのに、なぜわかるのでしょう。",
+    "地震の揺れは、速さのちがう2つの波で広がります。",
+    "先に走るのは、弱い揺れのP波。秒速約7キロです。",
+    "後から来るのが、強い揺れのS波。秒速約4キロです。",
+    "震源の近くの地震計が、先に着いたP波をとらえます。",
+    "気象庁のコンピュータが、すぐに震源と揺れの強さを計算します。",
+    "その知らせは電気の信号で、ほぼ光の速さで各地へ届きます。",
+    "秒速4キロの揺れに、光の速さで先回りしていたのです。",
+    "この動画は全て、",
+    "AI動画編集ツール「Rakuda」で編集しました。",
+    "ツールが気になる方は、",
+    "「Rakuda」とコメントしてください。"
+  ],
+  "sources": [
+    {
+      "title": "緊急地震速報のしくみ (Japan Meteorological Agency): P wave about 7 km/s, S wave about 4 km/s and stronger; seismographs near the epicenter detect the P wave; automatic instant calculation; signals travel at nearly light speed; a few seconds of analysis and delivery mean places near the epicenter may not be warned in time",
+      "url": "https://www.data.jma.go.jp/eew/data/nc/shikumi/shikumi.html"
+    },
+    {
+      "title": "緊急地震速報とは (Japan Meteorological Agency): from a few seconds to a few tens of seconds of warning",
+      "url": "https://www.data.jma.go.jp/eew/data/nc/shikumi/whats-eew.html"
+    },
+    {
+      "title": "What is an Earthquake Early Warning? (Japan Meteorological Agency)",
+      "url": "https://www.jma.go.jp/jma/en/Activities/eew1.html"
+    },
+    {
+      "title": "Limitations of the Earthquake Early Warning (Japan Meteorological Agency)",
+      "url": "https://www.jma.go.jp/jma/en/Activities/eew3.html"
+    },
+    {
+      "title": "Earthquake Early Warning System (Japan Meteorological Agency): service launched 1 October 2007",
+      "url": "https://www.jma.go.jp/jma/en/Activities/eew.html"
+    }
+  ]
+}
